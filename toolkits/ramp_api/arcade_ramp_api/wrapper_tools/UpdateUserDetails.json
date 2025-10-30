@@ -1,0 +1,389 @@
+{
+  "name": "UpdateUserDetails",
+  "fully_qualified_name": "RampApi.UpdateUserDetails@0.1.0",
+  "description": "Update a user's profile information.\n\nUse this tool to modify the details of a user's profile based on their user ID. It updates user-specific information and returns the updated profile details.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "user_identifier",
+        "required": true,
+        "description": "A unique string to identify the user whose details are to be updated.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "user_id"
+      },
+      {
+        "name": "department_unique_identifier",
+        "required": false,
+        "description": "Unique identifier for the user's department to be updated.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique identifier of the employee's department"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "department_id"
+      },
+      {
+        "name": "employee_direct_manager_id",
+        "required": false,
+        "description": "Unique identifier for the employee's direct manager. This ID links the employee to their manager within the system.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique identifier of the employee's direct manager"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "direct_manager_id"
+      },
+      {
+        "name": "user_first_name",
+        "required": false,
+        "description": "The first name of the user to be updated. It must be a string.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "first_name"
+      },
+      {
+        "name": "last_name",
+        "required": false,
+        "description": "The last name of the user. This field is required for identifying and updating the user's profile.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "last_name"
+      },
+      {
+        "name": "location_identifier",
+        "required": false,
+        "description": "Unique identifier of the employee's location for updating location details.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique identifier of the employee's location"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "location_id"
+      },
+      {
+        "name": "employee_role",
+        "required": false,
+        "description": "The employee's role, restricted to Admin, Cardholder, or Bookkeeper. Note: Owner is not allowed.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "AUDITOR",
+            "BUSINESS_ADMIN",
+            "BUSINESS_BOOKKEEPER",
+            "BUSINESS_OWNER",
+            "BUSINESS_USER",
+            "GUEST_USER",
+            "IT_ADMIN"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The employee's role; It could be one of the following values: Admin, Cardholder, Bookkeeper; Note that Owner is not a permissible value."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "role"
+      },
+      {
+        "name": "auto_promote_manager",
+        "required": false,
+        "description": "Set to true to automatically promote the user's manager to manager.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether to automatically promote the users manager to manager."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "auto_promote"
+      },
+      {
+        "name": "is_manager",
+        "required": false,
+        "description": "Indicates whether the employee is a manager. Set to true if they are a manager, false otherwise.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether the employee is a manager"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "is_manager"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'patch_user_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "users:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/users/{user_id}",
+    "http_method": "PATCH",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "user_id",
+        "tool_parameter_name": "user_identifier",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "auto_promote",
+        "tool_parameter_name": "auto_promote_manager",
+        "description": "Whether to automatically promote the users manager to manager.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether to automatically promote the users manager to manager."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "department_id",
+        "tool_parameter_name": "department_unique_identifier",
+        "description": "Unique identifier of the employee's department",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique identifier of the employee's department"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "direct_manager_id",
+        "tool_parameter_name": "employee_direct_manager_id",
+        "description": "Unique identifier of the employee's direct manager",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique identifier of the employee's direct manager"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "first_name",
+        "tool_parameter_name": "user_first_name",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "is_manager",
+        "tool_parameter_name": "is_manager",
+        "description": "Whether the employee is a manager",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether the employee is a manager"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "last_name",
+        "tool_parameter_name": "last_name",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "location_id",
+        "tool_parameter_name": "location_identifier",
+        "description": "Unique identifier of the employee's location",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique identifier of the employee's location"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "role",
+        "tool_parameter_name": "employee_role",
+        "description": "The employee's role; It could be one of the following values: Admin, Cardholder, Bookkeeper; Note that Owner is not a permissible value.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "AUDITOR",
+            "BUSINESS_ADMIN",
+            "BUSINESS_BOOKKEEPER",
+            "BUSINESS_OWNER",
+            "BUSINESS_USER",
+            "GUEST_USER",
+            "IT_ADMIN"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The employee's role; It could be one of the following values: Admin, Cardholder, Bookkeeper; Note that Owner is not a permissible value."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"department_id\": \"2d68eb67-f6eb-4284-8683-7d530c77a5a6\",\n          \"direct_manager_id\": \"ccc5d4cc-337f-49a5-86b3-5df128233f2c\",\n          \"first_name\": \"Jeremy\",\n          \"is_manager\": true,\n          \"last_name\": \"Smith\",\n          \"location_id\": \"f4efe11c-221f-4b49-a1e4-33eaf96a49ee\",\n          \"role\": \"BUSINESS_ADMIN\"\n        },\n        \"properties\": {\n          \"auto_promote\": {\n            \"description\": \"Whether to automatically promote the users manager to manager.\",\n            \"type\": \"boolean\"\n          },\n          \"department_id\": {\n            \"description\": \"Unique identifier of the employee's department\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          },\n          \"direct_manager_id\": {\n            \"description\": \"Unique identifier of the employee's direct manager\",\n            \"format\": \"uuid\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"first_name\": {\n            \"minLength\": 1,\n            \"type\": \"string\"\n          },\n          \"is_manager\": {\n            \"description\": \"Whether the employee is a manager\",\n            \"type\": \"boolean\"\n          },\n          \"last_name\": {\n            \"minLength\": 1,\n            \"type\": \"string\"\n          },\n          \"location_id\": {\n            \"description\": \"Unique identifier of the employee's location\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          },\n          \"role\": {\n            \"description\": \"The employee's role; It could be one of the following values: Admin, Cardholder, Bookkeeper; Note that Owner is not a permissible value.\",\n            \"enum\": [\n              \"AUDITOR\",\n              \"BUSINESS_ADMIN\",\n              \"BUSINESS_BOOKKEEPER\",\n              \"BUSINESS_OWNER\",\n              \"BUSINESS_USER\",\n              \"GUEST_USER\",\n              \"IT_ADMIN\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

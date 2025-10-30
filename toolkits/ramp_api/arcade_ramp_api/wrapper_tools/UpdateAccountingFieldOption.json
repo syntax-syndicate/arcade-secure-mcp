@@ -1,0 +1,284 @@
+{
+  "name": "UpdateAccountingFieldOption",
+  "fully_qualified_name": "RampApi.UpdateAccountingFieldOption@0.1.0",
+  "description": "Update a custom accounting field option to reflect changes.\n\nUse this tool to modify a specific custom accounting field option by providing its ID. It updates the metadata or details associated with the field option.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "custom_field_option_id",
+        "required": true,
+        "description": "Unique identifier for the custom accounting field option to be updated. Required for specifying which field option to modify.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "field_option_id"
+      },
+      {
+        "name": "custom_field_option_code",
+        "required": false,
+        "description": "Code of the custom accounting field option. Provide an empty string to reset the code. Only available if not using a direct ERP integration.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Only available if not using a direct ERP integration: Code of the custom accounting field option; you could provide an empty string to reset the code."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "code"
+      },
+      {
+        "name": "update_display_name",
+        "required": false,
+        "description": "Update the display name of the custom field option.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Available to all: Update the display name of the custom field option."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "display_name"
+      },
+      {
+        "name": "field_option_name",
+        "required": false,
+        "description": "Name of the custom accounting field option. Only available if not using a direct ERP integration.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Only available if not using a direct ERP integration: Name of the custom accounting field option."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "value"
+      },
+      {
+        "name": "set_visibility",
+        "required": false,
+        "description": "Set the visibility of the custom field option to 'HIDDEN' or 'VISIBLE'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "HIDDEN",
+            "VISIBLE"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Available to all: Hide or Show option"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "visibility"
+      },
+      {
+        "name": "reactivate_custom_field_option",
+        "required": false,
+        "description": "Set to true to reactivate a deleted custom field option if not using direct ERP integration.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": [
+            "True"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Only available if not using a direct ERP integration: reactivate a deleted custom field option"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "reactivate"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'patch_custom_field_option_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "accounting:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/accounting/field-options/{field_option_id}",
+    "http_method": "PATCH",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "field_option_id",
+        "tool_parameter_name": "custom_field_option_id",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "code",
+        "tool_parameter_name": "custom_field_option_code",
+        "description": "Only available if not using a direct ERP integration: Code of the custom accounting field option; you could provide an empty string to reset the code.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Only available if not using a direct ERP integration: Code of the custom accounting field option; you could provide an empty string to reset the code."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "display_name",
+        "tool_parameter_name": "update_display_name",
+        "description": "Available to all: Update the display name of the custom field option.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Available to all: Update the display name of the custom field option."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "reactivate",
+        "tool_parameter_name": "reactivate_custom_field_option",
+        "description": "Only available if not using a direct ERP integration: reactivate a deleted custom field option",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": [
+            "True"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Only available if not using a direct ERP integration: reactivate a deleted custom field option"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "value",
+        "tool_parameter_name": "field_option_name",
+        "description": "Only available if not using a direct ERP integration: Name of the custom accounting field option.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Only available if not using a direct ERP integration: Name of the custom accounting field option."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "visibility",
+        "tool_parameter_name": "set_visibility",
+        "description": "Available to all: Hide or Show option",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "HIDDEN",
+            "VISIBLE"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Available to all: Hide or Show option"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"code\": \"450\",\n          \"display_name\": \"Sales & Marketing Display\",\n          \"reactivate\": true,\n          \"value\": \"Sales & Marketing\",\n          \"visibility\": \"VISIBLE\"\n        },\n        \"properties\": {\n          \"code\": {\n            \"description\": \"Only available if not using a direct ERP integration: Code of the custom accounting field option; you could provide an empty string to reset the code.\",\n            \"type\": \"string\"\n          },\n          \"display_name\": {\n            \"description\": \"Available to all: Update the display name of the custom field option.\",\n            \"type\": \"string\"\n          },\n          \"reactivate\": {\n            \"description\": \"Only available if not using a direct ERP integration: reactivate a deleted custom field option\",\n            \"enum\": [\n              true\n            ],\n            \"type\": \"boolean\"\n          },\n          \"value\": {\n            \"description\": \"Only available if not using a direct ERP integration: Name of the custom accounting field option.\",\n            \"type\": \"string\"\n          },\n          \"visibility\": {\n            \"description\": \"Available to all: Hide or Show option\",\n            \"enum\": [\n              \"HIDDEN\",\n              \"VISIBLE\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

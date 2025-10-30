@@ -1,0 +1,245 @@
+{
+  "name": "RequestAccessToken",
+  "fully_qualified_name": "RampApi.RequestAccessToken@0.1.0",
+  "description": "Request an access token using various authorization grants.\n\nUse this tool to request an access token from the Ramp API using different authorization methods. It supports Authorization Code, Refresh Token, and Client Credentials grants. The tool is useful for integrating with services that require OAuth2 authentication.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "grant_type",
+        "required": true,
+        "description": "Specifies the type of OAuth2 authorization grant to use: 'authorization_code', 'client_credentials', or 'refresh_token'. Ensure that the grant type is permitted for your app.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "authorization_code",
+            "client_credentials",
+            "refresh_token"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Grant type, must be one of: ['authorization_code', 'client_credentials', 'refresh_token']. Refresh token and client credentials grants must be added to app's permitted Grant Types."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "grant_type"
+      },
+      {
+        "name": "authorization_code",
+        "required": false,
+        "description": "Authorization code from https://app.ramp.com/v1/authorize, required if grant_type=authorization_code.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Authorization code obtained from request to https://app.ramp.com/v1/authorize, to be exchanged for access token. Field is required if grant_type=authorization_code."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "code"
+      },
+      {
+        "name": "authorization_redirect_uri",
+        "required": false,
+        "description": "The URI used in the initial authorization request. Required for `grant_type=authorization_code`.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The redirect URI previously used in the authorization request, used to verify app. Field is required if grant_type=authorization_code."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "redirect_uri"
+      },
+      {
+        "name": "refresh_token",
+        "required": false,
+        "description": "The refresh token used to obtain a new access token. Required for grant_type=refresh_token.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The refresh token issued to you to get a new access token."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "refresh_token"
+      },
+      {
+        "name": "authorization_scope",
+        "required": false,
+        "description": "Space-separated list of scopes for the returned token. Required if using client_credentials grant type.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Space-separated list of scopes to be granted to the returned token. These must be a subset (including full set) of the app's allowed scopes. Field is required if grant_type=client_credentials."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "scope"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_token'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/token",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "code",
+        "tool_parameter_name": "authorization_code",
+        "description": "Authorization code obtained from request to https://app.ramp.com/v1/authorize, to be exchanged for access token. Field is required if grant_type=authorization_code.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Authorization code obtained from request to https://app.ramp.com/v1/authorize, to be exchanged for access token. Field is required if grant_type=authorization_code."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "grant_type",
+        "tool_parameter_name": "grant_type",
+        "description": "Grant type, must be one of: ['authorization_code', 'client_credentials', 'refresh_token']. Refresh token and client credentials grants must be added to app's permitted Grant Types.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "authorization_code",
+            "client_credentials",
+            "refresh_token"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Grant type, must be one of: ['authorization_code', 'client_credentials', 'refresh_token']. Refresh token and client credentials grants must be added to app's permitted Grant Types."
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "redirect_uri",
+        "tool_parameter_name": "authorization_redirect_uri",
+        "description": "The redirect URI previously used in the authorization request, used to verify app. Field is required if grant_type=authorization_code.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The redirect URI previously used in the authorization request, used to verify app. Field is required if grant_type=authorization_code."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "refresh_token",
+        "tool_parameter_name": "refresh_token",
+        "description": "The refresh token issued to you to get a new access token.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The refresh token issued to you to get a new access token."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "scope",
+        "tool_parameter_name": "authorization_scope",
+        "description": "Space-separated list of scopes to be granted to the returned token. These must be a subset (including full set) of the app's allowed scopes. Field is required if grant_type=client_credentials.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Space-separated list of scopes to be granted to the returned token. These must be a subset (including full set) of the app's allowed scopes. Field is required if grant_type=client_credentials."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"code\": \"wUvTfJmrDiTogz3dRNsUJdBRtSl658ibsH8xLKwKQ2PbttRr\",\n          \"grant_type\": \"authorization_code\",\n          \"redirect_uri\": \"https://www.yourawesomeapp.com\",\n          \"refresh_token\": \"ramp_tok_IwOGYzYTlmM2YxOTQ5MGE3YmNmMDFkNTVk\",\n          \"scope\": \"users:read users:write\"\n        },\n        \"properties\": {\n          \"code\": {\n            \"description\": \"Authorization code obtained from request to https://app.ramp.com/v1/authorize, to be exchanged for access token. Field is required if grant_type=authorization_code.\",\n            \"type\": \"string\"\n          },\n          \"grant_type\": {\n            \"description\": \"Grant type, must be one of: ['authorization_code', 'client_credentials', 'refresh_token']. Refresh token and client credentials grants must be added to app's permitted Grant Types.\",\n            \"enum\": [\n              \"authorization_code\",\n              \"client_credentials\",\n              \"refresh_token\"\n            ],\n            \"type\": \"string\"\n          },\n          \"redirect_uri\": {\n            \"description\": \"The redirect URI previously used in the authorization request, used to verify app. Field is required if grant_type=authorization_code.\",\n            \"type\": \"string\"\n          },\n          \"refresh_token\": {\n            \"description\": \"The refresh token issued to you to get a new access token.\",\n            \"type\": \"string\"\n          },\n          \"scope\": {\n            \"description\": \"Space-separated list of scopes to be granted to the returned token. These must be a subset (including full set) of the app's allowed scopes. Field is required if grant_type=client_credentials.\",\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"grant_type\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

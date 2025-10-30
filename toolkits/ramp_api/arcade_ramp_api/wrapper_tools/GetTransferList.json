@@ -1,0 +1,411 @@
+{
+  "name": "GetTransferList",
+  "fully_qualified_name": "RampApi.GetTransferList@0.1.0",
+  "description": "Retrieve a paginated list of transfers.\n\nUse this tool to get a list of financial transfers, including pagination details for navigating large datasets. It helps in checking transaction histories and managing transfer records.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "filter_by_sync_status",
+        "required": false,
+        "description": "Specify the sync status to filter transfers. Options: NOT_SYNC_READY, SYNCED, SYNC_READY.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "NOT_SYNC_READY",
+            "SYNCED",
+            "SYNC_READY"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by sync status. Supersedes has_no_sync_commits if both are provided."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "sync_status"
+      },
+      {
+        "name": "transfer_status_filter",
+        "required": false,
+        "description": "Specify the status to filter transfers by, using predefined status codes. Accepts values such as 'ACH_CONFIRMED', 'CANCELED', 'COMPLETED', etc.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "ACH_CONFIRMED",
+            "CANCELED",
+            "COMPLETED",
+            "ERROR",
+            "INITIATED",
+            "NOT_ACKED",
+            "NOT_ENOUGH_FUNDS",
+            "PROCESSING_BY_ODFI",
+            "REJECTED_BY_ODFI",
+            "RETURNED_BY_RDFI",
+            "SUBMITTED_TO_FED",
+            "SUBMITTED_TO_RDFI",
+            "UNNECESSARY",
+            "UPLOADED"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by transfer status. See [Transfers Guide](/developer-api/v1/guides/transfers) for definitions."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "status"
+      },
+      {
+        "name": "business_entity_id",
+        "required": false,
+        "description": "Filter transfers based on the specified business entity ID.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter transfers by business entity."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "entity_id"
+      },
+      {
+        "name": "filter_by_statement_id",
+        "required": false,
+        "description": "Include only transfers associated with the specified statement ID.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter transfers included in the specified statement."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "statement_id"
+      },
+      {
+        "name": "filter_from_date",
+        "required": false,
+        "description": "Specify the date to filter transfers that occurred after this date, in ISO8601 format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter transfers that occurred after this date (ISO8601 format)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "from_date"
+      },
+      {
+        "name": "filter_transfers_before_date",
+        "required": false,
+        "description": "Filter transfers that occurred before this date (in ISO8601 format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter transfers that occurred before this date (ISO8601 format)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "to_date"
+      },
+      {
+        "name": "pagination_start_id",
+        "required": false,
+        "description": "The ID of the last entity on the previous page to fetch the next set of results in pagination.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "results_per_page",
+        "required": false,
+        "description": "Specify the number of results per page, between 2 and 100. Defaults to 20 if unspecified.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "page_size"
+      },
+      {
+        "name": "filter_unsynced_transfers",
+        "required": false,
+        "description": "Filter transfers that have not been synced when set to true.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter transfers that have not been synced."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "has_no_sync_commits"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'get_transfer_list_with_pagination'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "transfers:read"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/transfers",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "sync_status",
+        "tool_parameter_name": "filter_by_sync_status",
+        "description": "Filter by sync status. Supersedes has_no_sync_commits if both are provided.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "NOT_SYNC_READY",
+            "SYNCED",
+            "SYNC_READY"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by sync status. Supersedes has_no_sync_commits if both are provided."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "status",
+        "tool_parameter_name": "transfer_status_filter",
+        "description": "Filter by transfer status. See [Transfers Guide](/developer-api/v1/guides/transfers) for definitions.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "ACH_CONFIRMED",
+            "CANCELED",
+            "COMPLETED",
+            "ERROR",
+            "INITIATED",
+            "NOT_ACKED",
+            "NOT_ENOUGH_FUNDS",
+            "PROCESSING_BY_ODFI",
+            "REJECTED_BY_ODFI",
+            "RETURNED_BY_RDFI",
+            "SUBMITTED_TO_FED",
+            "SUBMITTED_TO_RDFI",
+            "UNNECESSARY",
+            "UPLOADED"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by transfer status. See [Transfers Guide](/developer-api/v1/guides/transfers) for definitions."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "entity_id",
+        "tool_parameter_name": "business_entity_id",
+        "description": "Filter transfers by business entity.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter transfers by business entity."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "statement_id",
+        "tool_parameter_name": "filter_by_statement_id",
+        "description": "Filter transfers included in the specified statement.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter transfers included in the specified statement."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "has_no_sync_commits",
+        "tool_parameter_name": "filter_unsynced_transfers",
+        "description": "Filter transfers that have not been synced.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter transfers that have not been synced."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "from_date",
+        "tool_parameter_name": "filter_from_date",
+        "description": "Filter transfers that occurred after this date (ISO8601 format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter transfers that occurred after this date (ISO8601 format)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "to_date",
+        "tool_parameter_name": "filter_transfers_before_date",
+        "description": "Filter transfers that occurred before this date (ISO8601 format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter transfers that occurred before this date (ISO8601 format)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_start_id",
+        "description": "The ID of the last entity of the previous page, used for pagination to get the next page.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "page_size",
+        "tool_parameter_name": "results_per_page",
+        "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": 20,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

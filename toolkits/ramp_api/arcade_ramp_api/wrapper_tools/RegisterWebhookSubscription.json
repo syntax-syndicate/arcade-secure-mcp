@@ -1,0 +1,155 @@
+{
+  "name": "RegisterWebhookSubscription",
+  "fully_qualified_name": "RampApi.RegisterWebhookSubscription@0.1.0",
+  "description": "Register a new outbound webhook subscription.\n\nThis tool registers a new outbound webhook subscription. The newly registered subscription will be in a pending verification state, requiring verification with the provided challenge.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "webhook_subscription_details",
+        "required": true,
+        "description": "JSON object containing 'endpoint_url', 'event_types', and optional 'additional_headers'.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "additional_headers": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Optional headers to include with webhook requests. Max 5 headers, header names max 100 chars, values max 1000 chars."
+            },
+            "endpoint_url": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "URL where webhook events will be sent"
+            },
+            "event_types": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Events that this subscription will receive"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_outbound_webhook_subscription_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/webhooks",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "webhook_subscription_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "additional_headers": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Optional headers to include with webhook requests. Max 5 headers, header names max 100 chars, values max 1000 chars."
+            },
+            "endpoint_url": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "URL where webhook events will be sent"
+            },
+            "event_types": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Events that this subscription will receive"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"additional_headers\": {\n            \"Authorization\": \"Bearer token123\",\n            \"X-Custom-Header\": \"value\"\n          },\n          \"endpoint_url\": \"https://example.com/webhook\",\n          \"event_types\": [\n            \"TRANSACTION_REFUNDED\",\n            \"USER_INVITED\"\n          ]\n        },\n        \"properties\": {\n          \"additional_headers\": {\n            \"additionalProperties\": {\n              \"maxLength\": 1000,\n              \"minLength\": 1,\n              \"type\": \"string\"\n            },\n            \"description\": \"Optional headers to include with webhook requests. Max 5 headers, header names max 100 chars, values max 1000 chars.\",\n            \"maxLength\": 5,\n            \"type\": \"object\"\n          },\n          \"endpoint_url\": {\n            \"description\": \"URL where webhook events will be sent\",\n            \"format\": \"url\",\n            \"type\": \"string\"\n          },\n          \"event_types\": {\n            \"description\": \"Events that this subscription will receive\",\n            \"items\": {\n              \"enum\": [\n                \"bills.approved\",\n                \"bills.created\",\n                \"bills.paid\",\n                \"bills.rejected\",\n                \"purchase_orders.created\",\n                \"purchase_orders.updated\",\n                \"reimbursements.ready_for_review\",\n                \"reimbursements.ready_to_sync\",\n                \"tests.test_event\",\n                \"transactions.authorized\",\n                \"transactions.cleared\",\n                \"transactions.ready_for_review\",\n                \"transactions.ready_to_sync\",\n                \"unified_requests.external_approval_request\",\n                \"vendors.activated\",\n                \"webhooks.verification\"\n              ],\n              \"type\": \"string\"\n            },\n            \"type\": \"array\"\n          }\n        },\n        \"required\": [\n          \"endpoint_url\",\n          \"event_types\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

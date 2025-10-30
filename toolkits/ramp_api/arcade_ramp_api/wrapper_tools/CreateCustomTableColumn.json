@@ -1,0 +1,142 @@
+{
+  "name": "CreateCustomTableColumn",
+  "fully_qualified_name": "RampApi.CreateCustomTableColumn@0.1.0",
+  "description": "Create a custom column in a specified table.\n\nUse this tool to create and configure a custom column in a specific table identified by its name.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "table_name_for_custom_column",
+        "required": true,
+        "description": "The name of the table where the custom column will be created. Must be a valid string identifier.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "custom_table_name"
+      },
+      {
+        "name": "custom_table_column_data",
+        "required": true,
+        "description": "JSON payload containing details for the custom column, including configurations and attributes.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_dev_api_configure_custom_table_columns'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "custom_records:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/custom-records/configure/custom-tables/{custom_table_name}/columns",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "custom_table_name",
+        "tool_parameter_name": "table_name_for_custom_column",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "custom_table_column_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"discriminator\": {\n          \"mapping\": {\n            \"boolean\": \"#/components/schemas/DeveloperApiCreatePrimitiveColumnRequestBody\",\n            \"custom_reference\": \"#/components/schemas/DeveloperApiCreateReferenceColumnRequestBody\",\n            \"native_reference\": \"#/components/schemas/DeveloperApiCreateReferenceColumnRequestBody\",\n            \"text\": \"#/components/schemas/DeveloperApiCreatePrimitiveColumnRequestBody\"\n          },\n          \"propertyName\": \"column_type_name\"\n        },\n        \"oneOf\": [\n          {\n            \"example\": {\n              \"column_type_name\": \"text\",\n              \"label\": \"Project Name\",\n              \"name\": \"project_name\"\n            },\n            \"properties\": {\n              \"column_type_name\": {\n                \"description\": \"The type of the primitive column.\",\n                \"enum\": [\n                  \"boolean\",\n                  \"text\"\n                ],\n                \"type\": \"string\"\n              },\n              \"label\": {\n                \"description\": \"The display name of the column\",\n                \"type\": \"string\"\n              },\n              \"name\": {\n                \"description\": \"The API name of the column, to be used when writing to this column\",\n                \"type\": \"string\"\n              }\n            },\n            \"required\": [\n              \"column_type_name\",\n              \"label\",\n              \"name\"\n            ],\n            \"type\": \"object\"\n          },\n          {\n            \"example\": {\n              \"column_type_name\": \"custom_reference\",\n              \"label\": \"Cost Center\",\n              \"name\": \"cost_center\",\n              \"reference_args\": {\n                \"cardinality\": \"many_to_one\",\n                \"corresponding_column_label\": \"Members\",\n                \"corresponding_column_name\": \"members\",\n                \"foreign_table\": {\n                  \"table_name\": \"cost_center\",\n                  \"type\": \"custom_table\"\n                }\n              }\n            },\n            \"properties\": {\n              \"column_type_name\": {\n                \"description\": \"The type of the reference column.\",\n                \"enum\": [\n                  \"custom_reference\",\n                  \"native_reference\"\n                ],\n                \"type\": \"string\"\n              },\n              \"label\": {\n                \"description\": \"The display name of the column\",\n                \"type\": \"string\"\n              },\n              \"name\": {\n                \"description\": \"The API name of the column, to be used when writing to this column\",\n                \"type\": \"string\"\n              },\n              \"reference_args\": {\n                \"allOf\": [\n                  {\n                    \"example\": {\n                      \"cardinality\": \"many_to_one\",\n                      \"corresponding_column_label\": \"Members\",\n                      \"corresponding_column_name\": \"members\",\n                      \"foreign_table\": {\n                        \"table_name\": \"cost_center\",\n                        \"type\": \"custom_table\"\n                      }\n                    },\n                    \"properties\": {\n                      \"cardinality\": {\n                        \"description\": \"The cardinality of the reference.\",\n                        \"enum\": [\n                          \"many_to_many\",\n                          \"many_to_one\"\n                        ],\n                        \"type\": \"string\"\n                      },\n                      \"corresponding_column_label\": {\n                        \"default\": null,\n                        \"description\": \"The label of the corresponding column. Will be generated if not provided.\",\n                        \"nullable\": true,\n                        \"type\": \"string\"\n                      },\n                      \"corresponding_column_name\": {\n                        \"description\": \"The API name of the corresponding column.\",\n                        \"type\": \"string\"\n                      },\n                      \"foreign_table\": {\n                        \"description\": \"The table that this column references.\",\n                        \"oneOf\": [\n                          {\n                            \"example\": {\n                              \"table_name\": \"business_regions\",\n                              \"type\": \"custom_table\"\n                            },\n                            \"properties\": {\n                              \"table_name\": {\n                                \"description\": \"The name of the custom table\",\n                                \"type\": \"string\"\n                              },\n                              \"type\": {\n                                \"default\": \"custom_table\",\n                                \"enum\": [\n                                  \"custom_table\"\n                                ],\n                                \"type\": \"string\"\n                              }\n                            },\n                            \"required\": [\n                              \"table_name\"\n                            ],\n                            \"type\": \"object\"\n                          },\n                          {\n                            \"example\": {\n                              \"table_name\": \"users\",\n                              \"type\": \"native_table\"\n                            },\n                            \"properties\": {\n                              \"table_name\": {\n                                \"description\": \"The name of the native Ramp table\",\n                                \"enum\": [\n                                  \"accounting_field_options\",\n                                  \"bills\",\n                                  \"business_entities\",\n                                  \"cards\",\n                                  \"departments\",\n                                  \"limits\",\n                                  \"locations\",\n                                  \"purchase_orders\",\n                                  \"reimbursements\",\n                                  \"transactions\",\n                                  \"users\"\n                                ],\n                                \"type\": \"string\"\n                              },\n                              \"type\": {\n                                \"default\": \"native_table\",\n                                \"enum\": [\n                                  \"native_table\"\n                                ],\n                                \"type\": \"string\"\n                              }\n                            },\n                            \"required\": [\n                              \"table_name\"\n                            ],\n                            \"type\": \"object\"\n                          }\n                        ]\n                      }\n                    },\n                    \"required\": [\n                      \"cardinality\",\n                      \"corresponding_column_name\",\n                      \"foreign_table\"\n                    ],\n                    \"type\": \"object\"\n                  }\n                ],\n                \"description\": \"Arguments for creating a reference column.\"\n              }\n            },\n            \"required\": [\n              \"column_type_name\",\n              \"label\",\n              \"name\",\n              \"reference_args\"\n            ],\n            \"type\": \"object\"\n          }\n        ]\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "name": "UpdateVendorPaymentDetails",
+  "fully_qualified_name": "RampApi.UpdateVendorPaymentDetails@0.1.0",
+  "description": "Add or update payment details for a vendor.\n\nUse this tool to add or update payment details for a vendor through the business's approval workflow. Supports ACH and Wire transfer methods, requiring routing and account numbers. The proposal may require approval based on the business's policies.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "vendor_identifier",
+        "required": true,
+        "description": "The unique identifier for the vendor whose payment details are to be updated. This should be a string.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "vendor_id"
+      },
+      {
+        "name": "vendor_payment_details",
+        "required": true,
+        "description": "JSON object with optional nickname, ACH details, wire details, and default indicator. Use for adding or updating vendor payment methods.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "account_nickname": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Optional nickname for the payment account"
+            },
+            "ach_details": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "ACH payment details"
+            },
+            "is_default": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether this should be the default payment method"
+            },
+            "wire_details": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Wire payment details"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_vendor_bank_account_update_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "vendors:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/vendors/{vendor_id}/update-bank-accounts",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "vendor_id",
+        "tool_parameter_name": "vendor_identifier",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "vendor_payment_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "account_nickname": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Optional nickname for the payment account"
+            },
+            "ach_details": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "ACH payment details"
+            },
+            "is_default": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether this should be the default payment method"
+            },
+            "wire_details": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Wire payment details"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"account_nickname\": \"Primary Business Account\",\n          \"ach_details\": {\n            \"account_name\": \"Business Account\",\n            \"account_number\": \"123456789\",\n            \"account_owner_type\": \"BUSINESS\",\n            \"account_type\": \"Checking\",\n            \"routing_number\": \"021000021\"\n          },\n          \"is_default\": false\n        },\n        \"properties\": {\n          \"account_nickname\": {\n            \"description\": \"Optional nickname for the payment account\",\n            \"type\": \"string\"\n          },\n          \"ach_details\": {\n            \"allOf\": [\n              {\n                \"properties\": {\n                  \"account_name\": {\n                    \"default\": \"Business Account\",\n                    \"description\": \"Account name\",\n                    \"type\": \"string\"\n                  },\n                  \"account_number\": {\n                    \"description\": \"ACH account number\",\n                    \"type\": \"string\"\n                  },\n                  \"account_owner_type\": {\n                    \"default\": \"BUSINESS\",\n                    \"description\": \"Account owner type\",\n                    \"enum\": [\n                      \"BUSINESS\",\n                      \"INDIVIDUAL\"\n                    ],\n                    \"type\": \"string\"\n                  },\n                  \"account_type\": {\n                    \"default\": \"Checking\",\n                    \"description\": \"Account type\",\n                    \"enum\": [\n                      \"Checking\",\n                      \"Savings\"\n                    ],\n                    \"type\": \"string\"\n                  },\n                  \"routing_number\": {\n                    \"description\": \"ACH routing number\",\n                    \"type\": \"string\"\n                  }\n                },\n                \"required\": [\n                  \"account_number\",\n                  \"routing_number\"\n                ],\n                \"type\": \"object\"\n              }\n            ],\n            \"description\": \"ACH payment details\"\n          },\n          \"is_default\": {\n            \"default\": false,\n            \"description\": \"Whether this should be the default payment method\",\n            \"type\": \"boolean\"\n          },\n          \"wire_details\": {\n            \"allOf\": [\n              {\n                \"properties\": {\n                  \"account_name\": {\n                    \"default\": \"Business Account\",\n                    \"description\": \"Account name\",\n                    \"type\": \"string\"\n                  },\n                  \"account_number\": {\n                    \"description\": \"Wire account number\",\n                    \"type\": \"string\"\n                  },\n                  \"routing_number\": {\n                    \"description\": \"Wire routing number\",\n                    \"type\": \"string\"\n                  }\n                },\n                \"required\": [\n                  \"account_number\",\n                  \"routing_number\"\n                ],\n                \"type\": \"object\"\n              }\n            ],\n            \"description\": \"Wire payment details\"\n          }\n        },\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "name": "ExtendNativeTable",
+  "fully_qualified_name": "RampApi.ExtendNativeTable@0.1.0",
+  "description": "Extend a native Ramp table.\n\nUse this tool to extend native Ramp tables by configuring additional custom records.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "native_table_name",
+        "required": true,
+        "description": "Select the native Ramp table to extend. Options include 'accounting_field_options', 'bills', 'business_entities', etc.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "accounting_field_options",
+            "bills",
+            "business_entities",
+            "cards",
+            "departments",
+            "limits",
+            "locations",
+            "purchase_orders",
+            "reimbursements",
+            "transactions",
+            "users"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The name of the native Ramp table"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "table_name"
+      },
+      {
+        "name": "table_category",
+        "required": false,
+        "description": "Specifies the category of the table, expected to be 'native_table'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "native_table"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "type"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_dev_api_configure_native_tables'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "custom_records:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/custom-records/configure/native-tables",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "table_name",
+        "tool_parameter_name": "native_table_name",
+        "description": "The name of the native Ramp table",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "accounting_field_options",
+            "bills",
+            "business_entities",
+            "cards",
+            "departments",
+            "limits",
+            "locations",
+            "purchase_orders",
+            "reimbursements",
+            "transactions",
+            "users"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The name of the native Ramp table"
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "type",
+        "tool_parameter_name": "table_category",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "native_table"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": "native_table",
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"table_name\": \"users\",\n          \"type\": \"native_table\"\n        },\n        \"properties\": {\n          \"table_name\": {\n            \"description\": \"The name of the native Ramp table\",\n            \"enum\": [\n              \"accounting_field_options\",\n              \"bills\",\n              \"business_entities\",\n              \"cards\",\n              \"departments\",\n              \"limits\",\n              \"locations\",\n              \"purchase_orders\",\n              \"reimbursements\",\n              \"transactions\",\n              \"users\"\n            ],\n            \"type\": \"string\"\n          },\n          \"type\": {\n            \"default\": \"native_table\",\n            \"enum\": [\n              \"native_table\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"table_name\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "name": "ArchivePurchaseOrder",
+  "fully_qualified_name": "RampApi.ArchivePurchaseOrder@0.1.0",
+  "description": "Archive a purchase order to manage records.\n\nThis tool is used to archive a purchase order by specifying its ID. It helps in managing and organizing purchase records efficiently.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "purchase_order_id",
+        "required": true,
+        "description": "The unique identifier for the purchase order to be archived.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "purchase_order_id"
+      },
+      {
+        "name": "archived_reason",
+        "required": false,
+        "description": "Provide the reason for archiving the purchase order. This helps in keeping track of why the order is being archived for future reference and organization.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Reason for archiving the purchase order."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "archived_reason"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_purchase_order_archive_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "purchase_orders:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/purchase-orders/{purchase_order_id}/archive",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "purchase_order_id",
+        "tool_parameter_name": "purchase_order_id",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "archived_reason",
+        "tool_parameter_name": "archived_reason",
+        "description": "Reason for archiving the purchase order.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Reason for archiving the purchase order."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"archived_reason\": \"This purchase order is no longer needed.\"\n        },\n        \"properties\": {\n          \"archived_reason\": {\n            \"description\": \"Reason for archiving the purchase order.\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          }\n        },\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

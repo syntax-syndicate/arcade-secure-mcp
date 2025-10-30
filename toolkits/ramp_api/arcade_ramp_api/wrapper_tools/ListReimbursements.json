@@ -1,0 +1,750 @@
+{
+  "name": "ListReimbursements",
+  "fully_qualified_name": "RampApi.ListReimbursements@0.1.0",
+  "description": "Retrieve a paginated list of reimbursements.\n\nUse this tool to get a list of reimbursements. Supports pagination to navigate through large sets of data. Ideal for tracking expenses or auditing transactions.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "filter_by_direction",
+        "required": false,
+        "description": "Specify the direction of reimbursements to filter by. Options are BUSINESS_TO_USER (default) or USER_TO_BUSINESS (for repayments).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "BUSINESS_TO_USER",
+            "USER_TO_BUSINESS"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by direction (BUSINESS_TO_USER default, USER_TO_BUSINESS for repayments)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "direction"
+      },
+      {
+        "name": "filter_by_sync_status",
+        "required": false,
+        "description": "Filter reimbursements by sync status. Options are NOT_SYNC_READY, SYNCED, or SYNC_READY.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "NOT_SYNC_READY",
+            "SYNCED",
+            "SYNC_READY"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by sync status. Supersedes has_no_sync_commits and sync_ready."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "sync_status"
+      },
+      {
+        "name": "filter_by_transaction_date_after",
+        "required": false,
+        "description": "Specify a date to filter reimbursements by those with transaction dates after this date. Format: YYYY-MM-DD.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by underlying transaction date (after this date)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "from_transaction_date"
+      },
+      {
+        "name": "filter_before_transaction_date",
+        "required": false,
+        "description": "Filter reimbursements by transaction date occurring before this date.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by underlying transaction date (before this date)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "to_transaction_date"
+      },
+      {
+        "name": "filter_awaiting_approval_by_user_id",
+        "required": false,
+        "description": "Filter reimbursements awaiting approval by a specific user's ID.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for reimbursements awaiting approval by a specific user."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "awaiting_approval_by_user_id"
+      },
+      {
+        "name": "filter_by_trip_id",
+        "required": false,
+        "description": "Filter reimbursements associated with a specific trip by providing the trip's unique identifier.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements associated with a specific trip."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "trip_id"
+      },
+      {
+        "name": "filter_by_accounting_field_id",
+        "required": false,
+        "description": "Filter reimbursements by the unique accounting field selection ID on Ramp.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements by accounting field selection. This ID uniquely identifies an accounting field selection on Ramp."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "accounting_field_selection_id"
+      },
+      {
+        "name": "filter_by_entity_id",
+        "required": false,
+        "description": "Filter reimbursements by specifying a business entity ID.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements by business entity."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "entity_id"
+      },
+      {
+        "name": "filter_from_creation_date",
+        "required": false,
+        "description": "Filter reimbursements created after this date. Use the format YYYY-MM-DD.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements created after this date."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "from_date"
+      },
+      {
+        "name": "filter_before_creation_date",
+        "required": false,
+        "description": "Filter reimbursements created before this date. Use ISO 8601 format (YYYY-MM-DD).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements created before this date."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "to_date"
+      },
+      {
+        "name": "submitted_after_date",
+        "required": false,
+        "description": "Filter reimbursements submitted after this date. Expected format is YYYY-MM-DD.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements submitted after this date."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "from_submitted_at"
+      },
+      {
+        "name": "filter_reimbursements_submitted_before_date",
+        "required": false,
+        "description": "Filter reimbursements submitted before this specified date.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements submitted before this date."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "to_submitted_at"
+      },
+      {
+        "name": "filter_synced_after_date",
+        "required": false,
+        "description": "Filter reimbursements synced after the specified date. Provide the date in 'YYYY-MM-DD' format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements synced after this date."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "synced_after"
+      },
+      {
+        "name": "filter_updated_after_date",
+        "required": false,
+        "description": "Specify a date to filter reimbursements updated after this date.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements updated after this date."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "updated_after"
+      },
+      {
+        "name": "pagination_start_id",
+        "required": false,
+        "description": "The ID of the last entity from the previous page to fetch the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "results_per_page",
+        "required": false,
+        "description": "Specify the number of reimbursement records per page (2 to 100, default is 20).",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "page_size"
+      },
+      {
+        "name": "filter_by_user_id",
+        "required": false,
+        "description": "Filter reimbursements by a specific user ID for targeted results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "user_id"
+      },
+      {
+        "name": "filter_by_approval_status",
+        "required": false,
+        "description": "Pass true to filter approved reimbursements, false for not approved. If not specified, returns all.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for reimbursements that are approved or not approved.  If not specified, returns all reimbursements."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "has_been_approved"
+      },
+      {
+        "name": "filter_sync_ready",
+        "required": false,
+        "description": "Set to true to filter reimbursements that are ready to sync to ERP systems.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements that are ready to sync to ERP systems."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "sync_ready"
+      },
+      {
+        "name": "filter_unsynced_reimbursements",
+        "required": false,
+        "description": "Set to true to filter reimbursements that haven't been synced to ERP systems.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements that haven't been synced to ERP systems."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "has_no_sync_commits"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'get_reimbursement_list_with_pagination'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "reimbursements:read"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/reimbursements",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "direction",
+        "tool_parameter_name": "filter_by_direction",
+        "description": "Filter by direction (BUSINESS_TO_USER default, USER_TO_BUSINESS for repayments).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "BUSINESS_TO_USER",
+            "USER_TO_BUSINESS"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by direction (BUSINESS_TO_USER default, USER_TO_BUSINESS for repayments)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": "BUSINESS_TO_USER",
+        "documentation_urls": []
+      },
+      {
+        "name": "sync_status",
+        "tool_parameter_name": "filter_by_sync_status",
+        "description": "Filter by sync status. Supersedes has_no_sync_commits and sync_ready.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "NOT_SYNC_READY",
+            "SYNCED",
+            "SYNC_READY"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by sync status. Supersedes has_no_sync_commits and sync_ready."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "from_transaction_date",
+        "tool_parameter_name": "filter_by_transaction_date_after",
+        "description": "Filter by underlying transaction date (after this date).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by underlying transaction date (after this date)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "to_transaction_date",
+        "tool_parameter_name": "filter_before_transaction_date",
+        "description": "Filter by underlying transaction date (before this date).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by underlying transaction date (before this date)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "awaiting_approval_by_user_id",
+        "tool_parameter_name": "filter_awaiting_approval_by_user_id",
+        "description": "Filter for reimbursements awaiting approval by a specific user.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for reimbursements awaiting approval by a specific user."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "has_been_approved",
+        "tool_parameter_name": "filter_by_approval_status",
+        "description": "Filter for reimbursements that are approved or not approved.  If not specified, returns all reimbursements.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for reimbursements that are approved or not approved.  If not specified, returns all reimbursements."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "trip_id",
+        "tool_parameter_name": "filter_by_trip_id",
+        "description": "Filter reimbursements associated with a specific trip.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements associated with a specific trip."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "accounting_field_selection_id",
+        "tool_parameter_name": "filter_by_accounting_field_id",
+        "description": "Filter reimbursements by accounting field selection. This ID uniquely identifies an accounting field selection on Ramp.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements by accounting field selection. This ID uniquely identifies an accounting field selection on Ramp."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "entity_id",
+        "tool_parameter_name": "filter_by_entity_id",
+        "description": "Filter reimbursements by business entity.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements by business entity."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "from_date",
+        "tool_parameter_name": "filter_from_creation_date",
+        "description": "Filter reimbursements created after this date.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements created after this date."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "to_date",
+        "tool_parameter_name": "filter_before_creation_date",
+        "description": "Filter reimbursements created before this date.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements created before this date."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "from_submitted_at",
+        "tool_parameter_name": "submitted_after_date",
+        "description": "Filter reimbursements submitted after this date.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements submitted after this date."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "to_submitted_at",
+        "tool_parameter_name": "filter_reimbursements_submitted_before_date",
+        "description": "Filter reimbursements submitted before this date.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements submitted before this date."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "synced_after",
+        "tool_parameter_name": "filter_synced_after_date",
+        "description": "Filter reimbursements synced after this date.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements synced after this date."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "sync_ready",
+        "tool_parameter_name": "filter_sync_ready",
+        "description": "Filter reimbursements that are ready to sync to ERP systems.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements that are ready to sync to ERP systems."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "has_no_sync_commits",
+        "tool_parameter_name": "filter_unsynced_reimbursements",
+        "description": "Filter reimbursements that haven't been synced to ERP systems.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements that haven't been synced to ERP systems."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "updated_after",
+        "tool_parameter_name": "filter_updated_after_date",
+        "description": "Filter reimbursements updated after this date.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter reimbursements updated after this date."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_start_id",
+        "description": "The ID of the last entity of the previous page, used for pagination to get the next page.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "page_size",
+        "tool_parameter_name": "results_per_page",
+        "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": 20,
+        "documentation_urls": []
+      },
+      {
+        "name": "user_id",
+        "tool_parameter_name": "filter_by_user_id",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

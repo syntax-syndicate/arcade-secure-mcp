@@ -1,0 +1,148 @@
+{
+  "name": "UploadBillAttachment",
+  "fully_qualified_name": "RampApi.UploadBillAttachment@0.1.0",
+  "description": "Upload an attachment to a bill as INVOICE or FILE.\n\nUse this tool to upload a file attachment to a bill. The attachment can be of type INVOICE or FILE. The tool should be called when there is a need to associate a document with a specific bill. Note that INVOICE type cannot be uploaded if it already exists.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "bill_identifier",
+        "required": true,
+        "description": "A unique string identifier for the bill to which the file will be attached.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "bill_id"
+      },
+      {
+        "name": "attachment_type",
+        "required": true,
+        "description": "Specify the type of attachment: 'INVOICE' for the actual invoice, or 'FILE' for other supporting documents.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "FILE",
+            "INVOICE"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Type of attachment: 'INVOICE' for the actual invoice on a bill, or 'FILE' for other supporting documents"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "attachment_type"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_bill_attachment_upload_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "bills:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/bills/{bill_id}/attachments",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "bill_id",
+        "tool_parameter_name": "bill_identifier",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "attachment_type",
+        "tool_parameter_name": "attachment_type",
+        "description": "Type of attachment: 'INVOICE' for the actual invoice on a bill, or 'FILE' for other supporting documents",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "FILE",
+            "INVOICE"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Type of attachment: 'INVOICE' for the actual invoice on a bill, or 'FILE' for other supporting documents"
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"properties\": {\n          \"attachment_type\": {\n            \"description\": \"Type of attachment: 'INVOICE' for the actual invoice on a bill, or 'FILE' for other supporting documents\",\n            \"enum\": [\n              \"FILE\",\n              \"INVOICE\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"attachment_type\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "name": "ListCustomFieldOptions",
+  "fully_qualified_name": "RampApi.ListCustomFieldOptions@0.1.0",
+  "description": "List options for a given custom accounting field.\n\nThis tool retrieves available options for a specified custom accounting field, allowing users to view or select from predefined choices.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "custom_field_id",
+        "required": true,
+        "description": "The unique identifier for the custom accounting field to retrieve options for.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "field_id"
+      },
+      {
+        "name": "filter_by_external_id",
+        "required": false,
+        "description": "Filter the options by the external/remote ID of custom accounting fields in the ERP system. Useful for narrowing down options to specific fields associated with a given external ID.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by Remote/external ID of custom accounting field options in ERP system."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "remote_id"
+      },
+      {
+        "name": "filter_by_field_option_code",
+        "required": false,
+        "description": "Specify the code to filter custom accounting field options.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by code of custom accounting field options."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "code"
+      },
+      {
+        "name": "pagination_start_id",
+        "required": false,
+        "description": "The ID of the last entity from the previous page to retrieve the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "results_per_page",
+        "required": false,
+        "description": "The number of results to return per page, between 2 and 100. Defaults to 20 if not specified.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "page_size"
+      },
+      {
+        "name": "include_active_options",
+        "required": false,
+        "description": "Include only active options if true; otherwise, include all.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "is_active"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'get_custom_field_option_list_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "accounting:read"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/accounting/field-options",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "remote_id",
+        "tool_parameter_name": "filter_by_external_id",
+        "description": "Filter by Remote/external ID of custom accounting field options in ERP system.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by Remote/external ID of custom accounting field options in ERP system."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "code",
+        "tool_parameter_name": "filter_by_field_option_code",
+        "description": "Filter by code of custom accounting field options.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by code of custom accounting field options."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_start_id",
+        "description": "The ID of the last entity of the previous page, used for pagination to get the next page.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "page_size",
+        "tool_parameter_name": "results_per_page",
+        "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": 20,
+        "documentation_urls": []
+      },
+      {
+        "name": "field_id",
+        "tool_parameter_name": "custom_field_id",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "query",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "is_active",
+        "tool_parameter_name": "include_active_options",
+        "description": "",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

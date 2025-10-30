@@ -1,0 +1,228 @@
+{
+  "name": "RemoveCustomTableCells",
+  "fully_qualified_name": "RampApi.RemoveCustomTableCells@0.1.0",
+  "description": "Removes specified cells from a custom table.\n\nThis tool is used to remove cells from a specified custom table. Call this when you need to delete specific entries from a custom table.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "custom_table_name",
+        "required": true,
+        "description": "The name of the custom table from which you want to remove cells.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "table_name"
+      },
+      {
+        "name": "custom_table_cells_data",
+        "required": true,
+        "description": "JSON array detailing cells to be removed. Includes 'external_key' and 'cells' with 'name' and 'contents'.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "data": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "cells": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "contents": {
+                      "val_type": "json",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    }
+                  },
+                  "description": "The contents of the cells in the row. The column name should be the name of the column, and the contents should be the value to insert into the cell. When setting a cell to reference many rows, each reference must be a separate entry in the list."
+                },
+                "external_key": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The external key of the row."
+                }
+              },
+              "description": "List of rows to insert or update. All entries must have the same set of column names, with `null` provided to indicate that a value should not be set."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_dev_api_remove_custom_row_cells'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "custom_records:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/custom-records/custom-tables/{table_name}/rows/-/remove",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "table_name",
+        "tool_parameter_name": "custom_table_name",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "custom_table_cells_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "data": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "cells": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "contents": {
+                      "val_type": "json",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    }
+                  },
+                  "description": "The contents of the cells in the row. The column name should be the name of the column, and the contents should be the value to insert into the cell. When setting a cell to reference many rows, each reference must be a separate entry in the list."
+                },
+                "external_key": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The external key of the row."
+                }
+              },
+              "description": "List of rows to insert or update. All entries must have the same set of column names, with `null` provided to indicate that a value should not be set."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"data\": [\n            {\n              \"cells\": [\n                {\n                  \"contents\": \"United States\",\n                  \"name\": \"country\"\n                },\n                {\n                  \"contents\": {\n                    \"column_name\": \"email\",\n                    \"value\": \"<existing_ramp_user_email>\"\n                  },\n                  \"name\": \"regional_director\"\n                }\n              ],\n              \"external_key\": \"Southwest\"\n            },\n            {\n              \"cells\": [\n                {\n                  \"contents\": \"United States\",\n                  \"name\": \"country\"\n                },\n                {\n                  \"contents\": {\n                    \"column_name\": \"email\",\n                    \"value\": \"<existing_ramp_user_email>\"\n                  },\n                  \"name\": \"regional_directors\"\n                },\n                {\n                  \"contents\": {\n                    \"column_name\": \"id\",\n                    \"value\": \"<existing_ramp_user_uuid>\"\n                  },\n                  \"name\": \"regional_directors\"\n                }\n              ],\n              \"external_key\": \"Northeast\"\n            }\n          ]\n        },\n        \"properties\": {\n          \"data\": {\n            \"description\": \"List of rows to insert or update. All entries must have the same set of column names, with `null` provided to indicate that a value should not be set.\",\n            \"items\": {\n              \"properties\": {\n                \"cells\": {\n                  \"description\": \"The contents of the cells in the row. The column name should be the name of the column, and the contents should be the value to insert into the cell. When setting a cell to reference many rows, each reference must be a separate entry in the list.\",\n                  \"items\": {\n                    \"properties\": {\n                      \"contents\": {\n                        \"nullable\": true,\n                        \"oneOf\": [\n                          {\n                            \"properties\": {\n                              \"column_name\": {\n                                \"title\": \"Column Name\",\n                                \"type\": \"string\"\n                              },\n                              \"value\": {\n                                \"title\": \"Value\",\n                                \"type\": \"string\"\n                              }\n                            },\n                            \"required\": [\n                              \"column_name\",\n                              \"value\"\n                            ],\n                            \"title\": \"NativeRowIdentifier\",\n                            \"type\": \"object\"\n                          },\n                          {\n                            \"type\": \"boolean\"\n                          },\n                          {\n                            \"type\": \"string\"\n                          }\n                        ],\n                        \"title\": \"Contents\"\n                      },\n                      \"name\": {\n                        \"title\": \"Name\",\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"required\": [\n                      \"contents\",\n                      \"name\"\n                    ],\n                    \"title\": \"ColumnNameAndContents\",\n                    \"type\": \"object\"\n                  },\n                  \"title\": \"Cells\",\n                  \"type\": \"array\"\n                },\n                \"external_key\": {\n                  \"description\": \"The external key of the row.\",\n                  \"title\": \"External Key\",\n                  \"type\": \"string\"\n                }\n              },\n              \"required\": [\n                \"cells\",\n                \"external_key\"\n              ],\n              \"title\": \"CustomRowColumnContentsByColumnName\",\n              \"type\": \"object\"\n            },\n            \"title\": \"Data\",\n            \"type\": \"array\"\n          }\n        },\n        \"required\": [\n          \"data\"\n        ],\n        \"title\": \"PutCustomRow\",\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

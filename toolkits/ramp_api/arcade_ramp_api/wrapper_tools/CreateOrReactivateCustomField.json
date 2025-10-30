@@ -1,0 +1,282 @@
+{
+  "name": "CreateOrReactivateCustomField",
+  "fully_qualified_name": "RampApi.CreateOrReactivateCustomField@0.1.0",
+  "description": "Create or reactivate a custom field on Ramp.\n\nUse this tool to create a new custom field on Ramp or reactivate an existing inactive custom field. If the field already exists, it will return the existing field without creating a new one. To update an existing field, use the PATCH endpoint instead.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "custom_field_external_id",
+        "required": true,
+        "description": "Remote/external ID of the custom accounting field from the ERP system.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Remote/external ID of custom accounting field from ERP system."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "id"
+      },
+      {
+        "name": "input_type_option",
+        "required": true,
+        "description": "Specifies if the input type is SINGLE_CHOICE, BOOLEAN, or FREE_FORM_TEXT for the custom field.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "BOOLEAN",
+            "FREE_FORM_TEXT",
+            "SINGLE_CHOICE"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The input type could be SINGLE_CHOICE, BOOLEAN or FREE_FORM_TEXT."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "input_type"
+      },
+      {
+        "name": "custom_accounting_field_name",
+        "required": true,
+        "description": "Name of the custom accounting field to be created or reactivated on Ramp.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "name of the custom accounting field."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "name"
+      },
+      {
+        "name": "custom_field_display_name",
+        "required": false,
+        "description": "The name of the custom accounting field as displayed on Ramp. This should be a clear and descriptive name.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The name of the custom accounting field as shown on Ramp."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "display_name"
+      },
+      {
+        "name": "required_object_types_for_sync",
+        "required": false,
+        "description": "List of object types that need this accounting field for coding before syncing.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Types of objects that require this accounting field to be used for coding before they can be marked as ready to sync."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "is_required_for"
+      },
+      {
+        "name": "enable_split_line_annotation",
+        "required": false,
+        "description": "Set to true to allow the field to annotate split line items. Defaults to false if unspecified.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If set to True, the accounting field can be used to annotate split line items. If not specified, the default value will be False."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "is_splittable"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_custom_field_list_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "accounting:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/accounting/fields",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "display_name",
+        "tool_parameter_name": "custom_field_display_name",
+        "description": "The name of the custom accounting field as shown on Ramp.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The name of the custom accounting field as shown on Ramp."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "id",
+        "tool_parameter_name": "custom_field_external_id",
+        "description": "Remote/external ID of custom accounting field from ERP system.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Remote/external ID of custom accounting field from ERP system."
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "input_type",
+        "tool_parameter_name": "input_type_option",
+        "description": "The input type could be SINGLE_CHOICE, BOOLEAN or FREE_FORM_TEXT.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "BOOLEAN",
+            "FREE_FORM_TEXT",
+            "SINGLE_CHOICE"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The input type could be SINGLE_CHOICE, BOOLEAN or FREE_FORM_TEXT."
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "is_required_for",
+        "tool_parameter_name": "required_object_types_for_sync",
+        "description": "Types of objects that require this accounting field to be used for coding before they can be marked as ready to sync.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Types of objects that require this accounting field to be used for coding before they can be marked as ready to sync."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "is_splittable",
+        "tool_parameter_name": "enable_split_line_annotation",
+        "description": "If set to True, the accounting field can be used to annotate split line items. If not specified, the default value will be False.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If set to True, the accounting field can be used to annotate split line items. If not specified, the default value will be False."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "name",
+        "tool_parameter_name": "custom_accounting_field_name",
+        "description": "name of the custom accounting field.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "name of the custom accounting field."
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"accounting_connection_id\": null,\n          \"display_name\": \"Dept\",\n          \"id\": \"Department\",\n          \"input_type\": \"SINGLE_CHOICE\",\n          \"is_splittable\": \"True\",\n          \"name\": \"Department\"\n        },\n        \"properties\": {\n          \"display_name\": {\n            \"description\": \"The name of the custom accounting field as shown on Ramp.\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"id\": {\n            \"description\": \"Remote/external ID of custom accounting field from ERP system.\",\n            \"type\": \"string\"\n          },\n          \"input_type\": {\n            \"description\": \"The input type could be SINGLE_CHOICE, BOOLEAN or FREE_FORM_TEXT.\",\n            \"enum\": [\n              \"BOOLEAN\",\n              \"FREE_FORM_TEXT\",\n              \"SINGLE_CHOICE\"\n            ],\n            \"type\": \"string\"\n          },\n          \"is_required_for\": {\n            \"description\": \"Types of objects that require this accounting field to be used for coding before they can be marked as ready to sync.\",\n            \"items\": {\n              \"enum\": [\n                \"BILL\",\n                \"BILL_PAYMENT\",\n                \"PURCHASE_ORDER\",\n                \"REIMBURSEMENT\",\n                \"TRANSACTION\"\n              ],\n              \"type\": \"string\"\n            },\n            \"type\": \"array\"\n          },\n          \"is_splittable\": {\n            \"description\": \"If set to True, the accounting field can be used to annotate split line items. If not specified, the default value will be False.\",\n            \"type\": \"boolean\"\n          },\n          \"name\": {\n            \"description\": \"name of the custom accounting field.\",\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"id\",\n          \"input_type\",\n          \"name\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

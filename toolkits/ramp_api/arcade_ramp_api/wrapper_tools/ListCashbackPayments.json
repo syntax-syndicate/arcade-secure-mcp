@@ -1,0 +1,348 @@
+{
+  "name": "ListCashbackPayments",
+  "fully_qualified_name": "RampApi.ListCashbackPayments@0.1.0",
+  "description": "Retrieve a paginated list of cashback payments.\n\nThis tool retrieves a list of cashback payments along with pagination details. It should be called when you need to view or manage cashback transactions.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "filter_by_sync_status",
+        "required": false,
+        "description": "Filter cashbacks by sync status: NOT_SYNC_READY, SYNCED, or SYNC_READY. Supersedes sync_ready if provided.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "NOT_SYNC_READY",
+            "SYNCED",
+            "SYNC_READY"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by sync status. Supersedes sync_ready if provided."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "sync_status"
+      },
+      {
+        "name": "filter_by_entity_id",
+        "required": false,
+        "description": "Filter cashbacks by the specific business entity ID.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter cashbacks by business entity."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "entity_id"
+      },
+      {
+        "name": "filter_by_statement_id",
+        "required": false,
+        "description": "Specify the statement ID to filter cashback payments included in that statement.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter cashbacks included in the specified statement."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "statement_id"
+      },
+      {
+        "name": "filter_after_date",
+        "required": false,
+        "description": "Filter cashbacks that occurred after this date. Must be in ISO8601 format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter cashbacks that occurred after this date (ISO8601 format)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "from_date"
+      },
+      {
+        "name": "filter_before_date",
+        "required": false,
+        "description": "Filter cashback payments that occurred before this date. Use ISO8601 format (e.g., 2023-10-01).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter cashbacks that occurred before this date (ISO8601 format)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "to_date"
+      },
+      {
+        "name": "last_entity_id_for_pagination",
+        "required": false,
+        "description": "The ID of the last entity on the previous page, used to fetch the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "results_per_page",
+        "required": false,
+        "description": "Specify the number of results per page. Must be between 2 and 100. Defaults to 20 if not specified.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "page_size"
+      },
+      {
+        "name": "filter_by_sync_ready",
+        "required": false,
+        "description": "Boolean value to filter cashbacks that are ready to be synced (no pending syncs and completed).",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter cashbacks that are ready to be synced (no pending syncs and completed)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "sync_ready"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'get_cashback_list_with_pagination'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "cashbacks:read"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/cashbacks",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "sync_status",
+        "tool_parameter_name": "filter_by_sync_status",
+        "description": "Filter by sync status. Supersedes sync_ready if provided.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "NOT_SYNC_READY",
+            "SYNCED",
+            "SYNC_READY"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by sync status. Supersedes sync_ready if provided."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "entity_id",
+        "tool_parameter_name": "filter_by_entity_id",
+        "description": "Filter cashbacks by business entity.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter cashbacks by business entity."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "statement_id",
+        "tool_parameter_name": "filter_by_statement_id",
+        "description": "Filter cashbacks included in the specified statement.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter cashbacks included in the specified statement."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "sync_ready",
+        "tool_parameter_name": "filter_by_sync_ready",
+        "description": "Filter cashbacks that are ready to be synced (no pending syncs and completed).",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter cashbacks that are ready to be synced (no pending syncs and completed)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "from_date",
+        "tool_parameter_name": "filter_after_date",
+        "description": "Filter cashbacks that occurred after this date (ISO8601 format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter cashbacks that occurred after this date (ISO8601 format)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "to_date",
+        "tool_parameter_name": "filter_before_date",
+        "description": "Filter cashbacks that occurred before this date (ISO8601 format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter cashbacks that occurred before this date (ISO8601 format)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start",
+        "tool_parameter_name": "last_entity_id_for_pagination",
+        "description": "The ID of the last entity of the previous page, used for pagination to get the next page.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "page_size",
+        "tool_parameter_name": "results_per_page",
+        "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": 20,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

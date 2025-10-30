@@ -1,0 +1,271 @@
+{
+  "name": "CreateVendor",
+  "fully_qualified_name": "RampApi.CreateVendor@0.1.0",
+  "description": "Create and approve a new vendor automatically.\n\nThis tool is used to create a new vendor via the API. Vendors created are approved by default and bypass existing approval policies. Use this when you need to quickly add a vendor to the system.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "vendor_creation_details",
+        "required": true,
+        "description": "A JSON object containing detailed information for creating the vendor. Includes fields for accounting ID, address, contacts, country, vendor name, payment and tax details requests, state (for US-based vendors), vendor owner ID, and tracking category. Ensure either `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` is provided, not both.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "accounting_vendor_remote_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The accounting remote id of the vendor. At most one of `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` should be provided."
+            },
+            "address": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The address of the vendor."
+            },
+            "business_vendor_contacts": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Detailed information about the vendor contact."
+            },
+            "country": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The country of the vendor."
+            },
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Name of the new vendor to be created."
+            },
+            "request_payment_details": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether to request payment details from the vendor (ACH bank account, international wire transfer, and check mailing address). Requires a contact email."
+            },
+            "request_tax_details": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether to request tax information from the vendor (Tax Identification Number, federal tax classification, and tax address). Requires a contact email."
+            },
+            "state": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The state if country is US. Note that this field is ignored for non-US countries."
+            },
+            "vendor_owner_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Unique identifier of the user that will own this vendor."
+            },
+            "vendor_tracking_category_option_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Ramp unique identifier of the accounting vendor to link to this vendor. At most one of `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` should be provided."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_vendor_list_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "vendors:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/vendors",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "vendor_creation_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "accounting_vendor_remote_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The accounting remote id of the vendor. At most one of `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` should be provided."
+            },
+            "address": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The address of the vendor."
+            },
+            "business_vendor_contacts": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Detailed information about the vendor contact."
+            },
+            "country": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The country of the vendor."
+            },
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Name of the new vendor to be created."
+            },
+            "request_payment_details": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether to request payment details from the vendor (ACH bank account, international wire transfer, and check mailing address). Requires a contact email."
+            },
+            "request_tax_details": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether to request tax information from the vendor (Tax Identification Number, federal tax classification, and tax address). Requires a contact email."
+            },
+            "state": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The state if country is US. Note that this field is ignored for non-US countries."
+            },
+            "vendor_owner_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Unique identifier of the user that will own this vendor."
+            },
+            "vendor_tracking_category_option_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Ramp unique identifier of the accounting vendor to link to this vendor. At most one of `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` should be provided."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"business_vendor_contacts\": {\n            \"email\": \"vendor@ramp.com\",\n            \"first_name\": \"John\",\n            \"last_name\": \"Doe\",\n            \"phone\": \"+13525342357\"\n          },\n          \"country\": \"US\",\n          \"name\": \"Ramp\",\n          \"request_payment_details\": true,\n          \"request_tax_details\": true,\n          \"state\": \"NY\",\n          \"vendor_owner_id\": \"6b864472-294e-4fc9-91ab-158d684c8886\",\n          \"vendor_tracking_category_option_id\": \"60a1a5c9-9b2d-4658-9024-cc4baebf819a\"\n        },\n        \"properties\": {\n          \"accounting_vendor_remote_id\": {\n            \"description\": \"The accounting remote id of the vendor. At most one of `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` should be provided.\",\n            \"type\": \"string\"\n          },\n          \"address\": {\n            \"allOf\": [\n              {\n                \"properties\": {\n                  \"address_line_1\": {\n                    \"description\": \"Primary address line of the vendor.\",\n                    \"type\": \"string\"\n                  },\n                  \"address_line_2\": {\n                    \"description\": \"Secondary address line or suite number of the vendor.\",\n                    \"nullable\": true,\n                    \"type\": \"string\"\n                  },\n                  \"city\": {\n                    \"description\": \"City of the vendor address.\",\n                    \"type\": \"string\"\n                  },\n                  \"country\": {\n                    \"description\": \"Country of the vendor address.\",\n                    \"nullable\": true,\n                    \"type\": \"string\"\n                  },\n                  \"postal_code\": {\n                    \"description\": \"Postal or ZIP code of the vendor address.\",\n                    \"type\": \"string\"\n                  },\n                  \"state\": {\n                    \"description\": \"The state if country is US. Note that this field is ignored for non-US countries.\",\n                    \"nullable\": true,\n                    \"type\": \"string\"\n                  }\n                },\n                \"required\": [\n                  \"address_line_1\",\n                  \"city\",\n                  \"postal_code\"\n                ],\n                \"type\": \"object\"\n              }\n            ],\n            \"description\": \"The address of the vendor.\"\n          },\n          \"business_vendor_contacts\": {\n            \"allOf\": [\n              {\n                \"properties\": {\n                  \"email\": {\n                    \"type\": \"string\"\n                  },\n                  \"first_name\": {\n                    \"type\": \"string\"\n                  },\n                  \"last_name\": {\n                    \"type\": \"string\"\n                  },\n                  \"phone\": {\n                    \"type\": \"string\"\n                  }\n                },\n                \"required\": [\n                  \"email\"\n                ],\n                \"type\": \"object\"\n              }\n            ],\n            \"description\": \"Detailed information about the vendor contact.\"\n          },\n          \"country\": {\n            \"description\": \"The country of the vendor.\",\n            \"type\": \"string\"\n          },\n          \"name\": {\n            \"description\": \"Name of the new vendor to be created.\",\n            \"type\": \"string\"\n          },\n          \"request_payment_details\": {\n            \"default\": false,\n            \"description\": \"Whether to request payment details from the vendor (ACH bank account, international wire transfer, and check mailing address). Requires a contact email.\",\n            \"type\": \"boolean\"\n          },\n          \"request_tax_details\": {\n            \"default\": false,\n            \"description\": \"Whether to request tax information from the vendor (Tax Identification Number, federal tax classification, and tax address). Requires a contact email.\",\n            \"type\": \"boolean\"\n          },\n          \"state\": {\n            \"default\": null,\n            \"description\": \"The state if country is US. Note that this field is ignored for non-US countries.\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"vendor_owner_id\": {\n            \"description\": \"Unique identifier of the user that will own this vendor.\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          },\n          \"vendor_tracking_category_option_id\": {\n            \"description\": \"Ramp unique identifier of the accounting vendor to link to this vendor. At most one of `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` should be provided.\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"business_vendor_contacts\",\n          \"country\",\n          \"vendor_owner_id\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

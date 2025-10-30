@@ -1,0 +1,175 @@
+{
+  "name": "UploadTransactionMemo",
+  "fully_qualified_name": "RampApi.UploadTransactionMemo@0.1.0",
+  "description": "Upload a new memo for a specific transaction.\n\nUse this tool to upload a memo to a specified transaction. It is triggered when there is a need to add a note or explanation to a transaction.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "transaction_identifier",
+        "required": true,
+        "description": "The unique identifier for the transaction to which the memo will be uploaded. It should be a string representing the transaction's ID.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "transaction_id"
+      },
+      {
+        "name": "memo_text",
+        "required": true,
+        "description": "Text content of the memo to create for a transaction.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Text content of the memo to create."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "memo"
+      },
+      {
+        "name": "apply_memo_to_future_transactions",
+        "required": false,
+        "description": "Indicate if the memo should automatically apply to similar future transactions. Use true for recurring, false otherwise.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether this memo should automatically apply to similar future transactions."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "is_memo_recurring"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_memo_create_single_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "memos:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/memos/{transaction_id}",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "transaction_id",
+        "tool_parameter_name": "transaction_identifier",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "is_memo_recurring",
+        "tool_parameter_name": "apply_memo_to_future_transactions",
+        "description": "Whether this memo should automatically apply to similar future transactions.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether this memo should automatically apply to similar future transactions."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": false,
+        "documentation_urls": []
+      },
+      {
+        "name": "memo",
+        "tool_parameter_name": "memo_text",
+        "description": "Text content of the memo to create.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Text content of the memo to create."
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"properties\": {\n          \"is_memo_recurring\": {\n            \"default\": false,\n            \"deprecated\": true,\n            \"description\": \"Whether this memo should automatically apply to similar future transactions.\",\n            \"type\": \"boolean\"\n          },\n          \"memo\": {\n            \"description\": \"Text content of the memo to create.\",\n            \"maxLength\": 255,\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"memo\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

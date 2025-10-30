@@ -1,0 +1,138 @@
+{
+  "name": "VerifyWebhookSubscription",
+  "fully_qualified_name": "RampApi.VerifyWebhookSubscription@0.1.0",
+  "description": "Verify a webhook subscription to ensure proper setup.\n\nUse this tool to verify the setup of a webhook subscription by confirming its configuration is correct.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "webhook_identifier",
+        "required": true,
+        "description": "The unique identifier for the webhook subscription to verify.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "webhook_id"
+      },
+      {
+        "name": "webhook_verification_challenge",
+        "required": true,
+        "description": "A string used to verify the webhook endpoint.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Challenge to verify webhook endpoint"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "challenge"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_outbound_webhook_subscription_verify_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/webhooks/{webhook_id}/verify",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "webhook_id",
+        "tool_parameter_name": "webhook_identifier",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "challenge",
+        "tool_parameter_name": "webhook_verification_challenge",
+        "description": "Challenge to verify webhook endpoint",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Challenge to verify webhook endpoint"
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"challenge\": \"ramp_challenge_a8f5f167f44f4964e6c998dee827110c\"\n        },\n        \"properties\": {\n          \"challenge\": {\n            \"description\": \"Challenge to verify webhook endpoint\",\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"challenge\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

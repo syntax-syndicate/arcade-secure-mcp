@@ -1,0 +1,175 @@
+{
+  "name": "UploadReceiptImage",
+  "fully_qualified_name": "RampApi.UploadReceiptImage@0.1.0",
+  "description": "Upload a receipt image and optionally link it to a transaction.\n\nThis tool uploads a receipt image to the Ramp service and can optionally associate it with a specific transaction by providing a transaction ID. If no transaction ID is provided, the service will attempt to match the receipt automatically. Use this tool when you need to manage receipts related to financial transactions.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "unique_idempotency_key",
+        "required": true,
+        "description": "Unique string to prevent duplicate uploads. Use a UUID for uniqueness.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique value to prevent duplicate uploads (use a UUID to avoid collisions)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "idempotency_key"
+      },
+      {
+        "name": "associated_user_id",
+        "required": true,
+        "description": "ID of the user to be associated with the receipt for matching priority. Provide this to influence which transaction the receipt is matched with.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "User to associate with the receipt (affects transaction matching priority)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "user_id"
+      },
+      {
+        "name": "transaction_id",
+        "required": false,
+        "description": "ID of the transaction to link with the uploaded receipt. If not provided, automatic matching will be attempted based on context.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Transaction to attach to the uploaded receipt."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "transaction_id"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_receipt_upload'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "receipts:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/receipts",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "idempotency_key",
+        "tool_parameter_name": "unique_idempotency_key",
+        "description": "Unique value to prevent duplicate uploads (use a UUID to avoid collisions).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique value to prevent duplicate uploads (use a UUID to avoid collisions)."
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "transaction_id",
+        "tool_parameter_name": "transaction_id",
+        "description": "Transaction to attach to the uploaded receipt.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Transaction to attach to the uploaded receipt."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "user_id",
+        "tool_parameter_name": "associated_user_id",
+        "description": "User to associate with the receipt (affects transaction matching priority).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "User to associate with the receipt (affects transaction matching priority)."
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"idempotency_key\": \"0a0ed428-0250-4993-96ad-94cd77bc86b6\",\n          \"transaction_id\": \"01b7dc97-5b67-45a2-8b05-e4e078f3a722\",\n          \"user_id\": \"30ffb5d0-3021-4438-8253-25819d480237\"\n        },\n        \"properties\": {\n          \"idempotency_key\": {\n            \"description\": \"Unique value to prevent duplicate uploads (use a UUID to avoid collisions).\",\n            \"type\": \"string\"\n          },\n          \"transaction_id\": {\n            \"description\": \"Transaction to attach to the uploaded receipt.\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          },\n          \"user_id\": {\n            \"description\": \"User to associate with the receipt (affects transaction matching priority).\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"idempotency_key\",\n          \"user_id\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

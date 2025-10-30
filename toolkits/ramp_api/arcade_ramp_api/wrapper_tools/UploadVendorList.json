@@ -1,0 +1,161 @@
+{
+  "name": "UploadVendorList",
+  "fully_qualified_name": "RampApi.UploadVendorList@0.1.0",
+  "description": "Upload a batch of up to 500 vendors to Ramp.\n\nUse this tool to upload a batch of up to 500 vendors to Ramp in an all-or-nothing manner. Ensure that the vendor data is clean and does not contain duplicates already on Ramp to avoid batch rejection. For updating existing vendors, use a different endpoint.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "vendor_data",
+        "required": true,
+        "description": "JSON object containing up to 500 vendors with their IDs and names for classification of Ramp transactions.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "vendors": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Remote/external ID of accounting vendor in ERP system."
+                },
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "name of the vendor"
+                }
+              },
+              "description": "A list of vendors that you want to use to classify your Ramp transactions."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_accounting_vendor_list_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "accounting:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/accounting/vendors",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "vendor_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "vendors": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Remote/external ID of accounting vendor in ERP system."
+                },
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "name of the vendor"
+                }
+              },
+              "description": "A list of vendors that you want to use to classify your Ramp transactions."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"vendors\": [\n            {\n              \"id\": \"V-5500-0130\",\n              \"name\": \"AirTable\"\n            },\n            {\n              \"id\": \"V-5500-0135\",\n              \"name\": \"Slack Technologies, LLC\"\n            },\n            {\n              \"id\": \"V-5500-0142\",\n              \"name\": \"Microsoft\"\n            }\n          ]\n        },\n        \"properties\": {\n          \"vendors\": {\n            \"description\": \"A list of vendors that you want to use to classify your Ramp transactions.\",\n            \"items\": {\n              \"example\": {\n                \"id\": \"V-5500-0135\",\n                \"name\": \"Slack Technologies, LLC\"\n              },\n              \"properties\": {\n                \"id\": {\n                  \"description\": \"Remote/external ID of accounting vendor in ERP system.\",\n                  \"type\": \"string\"\n                },\n                \"name\": {\n                  \"description\": \"name of the vendor\",\n                  \"type\": \"string\"\n                }\n              },\n              \"required\": [\n                \"id\",\n                \"name\"\n              ],\n              \"type\": \"object\"\n            },\n            \"maxItems\": 500,\n            \"minItems\": 1,\n            \"type\": \"array\"\n          }\n        },\n        \"required\": [\n          \"vendors\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

@@ -1,0 +1,424 @@
+{
+  "name": "ListPurchaseOrders",
+  "fully_qualified_name": "RampApi.ListPurchaseOrders@0.1.0",
+  "description": "Retrieve a list of purchase orders.\n\nCall this tool to obtain a list of current purchase orders. It can be used to view all purchase order details, including their statuses and related information.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "purchase_order_creation_source",
+        "required": false,
+        "description": "Specifies the origin of the purchase order. Options include ACCOUNTING_PROVIDER, DEVELOPER_API, or RAMP.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "ACCOUNTING_PROVIDER",
+            "DEVELOPER_API",
+            "RAMP"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Creation source of the purchase order."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "creation_source"
+      },
+      {
+        "name": "filter_from_created_date",
+        "required": false,
+        "description": "Filter purchase orders created after a specified date. Expected format is ISO 8601 (YYYY-MM-DD).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for purchase orders that were requested after the given date."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "from_created_at"
+      },
+      {
+        "name": "filter_before_creation_date",
+        "required": false,
+        "description": "Filter for purchase orders requested before this date. Format: YYYY-MM-DD.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for purchase orders that were requested before the given date."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "to_created_at"
+      },
+      {
+        "name": "receipt_status",
+        "required": false,
+        "description": "Specify the receipt status of the purchase order. Options are: FULLY_RECEIVED, NOT_RECEIVED, OVER_RECEIVED, PARTIALLY_RECEIVED.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "FULLY_RECEIVED",
+            "NOT_RECEIVED",
+            "OVER_RECEIVED",
+            "PARTIALLY_RECEIVED"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Receipt status of the purchase order."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "receipt_status"
+      },
+      {
+        "name": "pagination_start_id",
+        "required": false,
+        "description": "The ID of the last entity from the previous page to retrieve the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "results_per_page",
+        "required": false,
+        "description": "Sets the number of purchase orders returned per page. Must be between 2 and 100, default is 20.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "page_size"
+      },
+      {
+        "name": "business_entity_id",
+        "required": false,
+        "description": "Unique identifier for the associated business entity.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique identifier for the associated business entity."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "entity_id"
+      },
+      {
+        "name": "spend_request_identifier",
+        "required": false,
+        "description": "Unique identifier for the spend request linked to the purchase order.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique identifier for the spend request associated with the purchase order."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "spend_request_id"
+      },
+      {
+        "name": "three_way_match_enabled",
+        "required": false,
+        "description": "Set to true to enable three-way match for the purchase order.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether three-way match is enabled for the purchase order."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "three_way_match_enabled"
+      },
+      {
+        "name": "include_archived_orders",
+        "required": false,
+        "description": "Set to true to include archived purchase orders. Defaults to false.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether to include archived purchase orders. By default, include_archived is false."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "include_archived"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'get_purchase_orders_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "purchase_orders:read"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/purchase-orders",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "creation_source",
+        "tool_parameter_name": "purchase_order_creation_source",
+        "description": "Creation source of the purchase order.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "ACCOUNTING_PROVIDER",
+            "DEVELOPER_API",
+            "RAMP"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Creation source of the purchase order."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "from_created_at",
+        "tool_parameter_name": "filter_from_created_date",
+        "description": "Filter for purchase orders that were requested after the given date.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for purchase orders that were requested after the given date."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "to_created_at",
+        "tool_parameter_name": "filter_before_creation_date",
+        "description": "Filter for purchase orders that were requested before the given date.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for purchase orders that were requested before the given date."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "receipt_status",
+        "tool_parameter_name": "receipt_status",
+        "description": "Receipt status of the purchase order.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "FULLY_RECEIVED",
+            "NOT_RECEIVED",
+            "OVER_RECEIVED",
+            "PARTIALLY_RECEIVED"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Receipt status of the purchase order."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_start_id",
+        "description": "The ID of the last entity of the previous page, used for pagination to get the next page.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "page_size",
+        "tool_parameter_name": "results_per_page",
+        "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": 20,
+        "documentation_urls": []
+      },
+      {
+        "name": "entity_id",
+        "tool_parameter_name": "business_entity_id",
+        "description": "Unique identifier for the associated business entity.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique identifier for the associated business entity."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "spend_request_id",
+        "tool_parameter_name": "spend_request_identifier",
+        "description": "Unique identifier for the spend request associated with the purchase order.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique identifier for the spend request associated with the purchase order."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "three_way_match_enabled",
+        "tool_parameter_name": "three_way_match_enabled",
+        "description": "Whether three-way match is enabled for the purchase order.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether three-way match is enabled for the purchase order."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": false,
+        "documentation_urls": []
+      },
+      {
+        "name": "include_archived",
+        "tool_parameter_name": "include_archived_orders",
+        "description": "Whether to include archived purchase orders. By default, include_archived is false.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether to include archived purchase orders. By default, include_archived is false."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": false,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

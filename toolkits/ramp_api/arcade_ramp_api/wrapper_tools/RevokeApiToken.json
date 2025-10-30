@@ -1,0 +1,144 @@
+{
+  "name": "RevokeApiToken",
+  "fully_qualified_name": "RampApi.RevokeApiToken@0.1.0",
+  "description": "Revoke an API token to prevent its use.\n\nUse this tool to revoke a Ramp API token, ensuring it can no longer be utilized for authentication.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "token_to_revoke",
+        "required": true,
+        "description": "The access or refresh token that needs to be revoked.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Access token or refresh token to be revoked."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "token"
+      },
+      {
+        "name": "token_type",
+        "required": false,
+        "description": "Specify whether the token to be revoked is an 'access_token' or 'refresh_token'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "access_token",
+            "refresh_token"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Type of the token to be revoked."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "token_type_hint"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_revoke_token'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/token/revoke",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "token",
+        "tool_parameter_name": "token_to_revoke",
+        "description": "Access token or refresh token to be revoked.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Access token or refresh token to be revoked."
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "token_type_hint",
+        "tool_parameter_name": "token_type",
+        "description": "Type of the token to be revoked.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "access_token",
+            "refresh_token"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Type of the token to be revoked."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"token\": \"ramp_tok_IwOGYzYTlmM2YxOTQ5MGE3YmNmMDFkNTVk\",\n          \"token_type_hint\": \"refresh_token\"\n        },\n        \"properties\": {\n          \"token\": {\n            \"description\": \"Access token or refresh token to be revoked.\",\n            \"type\": \"string\"\n          },\n          \"token_type_hint\": {\n            \"description\": \"Type of the token to be revoked.\",\n            \"enum\": [\n              \"access_token\",\n              \"refresh_token\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"token\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

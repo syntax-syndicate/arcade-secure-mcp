@@ -1,0 +1,256 @@
+{
+  "name": "UpdateVendor",
+  "fully_qualified_name": "RampApi.UpdateVendor@0.1.0",
+  "description": "Updates the details of an existing vendor.\n\nUse this tool to modify and update the details of an existing vendor when changes are required to their information.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "vendor_identifier",
+        "required": true,
+        "description": "The unique identifier for the vendor to be updated. This should be a string value representing the vendor's ID.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "vendor_id"
+      },
+      {
+        "name": "vendor_update_details",
+        "required": true,
+        "description": "JSON object detailing vendor update: includes accounting remote ID, address, country, name, active status, state (for US), and a vendor tracking category option ID. At most one of accounting remote ID or vendor tracking category option ID should be provided.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "accounting_vendor_remote_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The accounting remote id of the vendor. At most one of `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` should be provided."
+            },
+            "address": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The address of the vendor."
+            },
+            "country": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The country of the vendor."
+            },
+            "description": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Name of the vendor."
+            },
+            "is_active": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether this vendor is active."
+            },
+            "state": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The state if country is US. Note that this field is ignored for non-US countries."
+            },
+            "vendor_tracking_category_option_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Unique identifier of the vendor. At most one of `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` should be provided."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'patch_vendor_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "vendors:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/vendors/{vendor_id}",
+    "http_method": "PATCH",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "vendor_id",
+        "tool_parameter_name": "vendor_identifier",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "vendor_update_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "accounting_vendor_remote_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The accounting remote id of the vendor. At most one of `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` should be provided."
+            },
+            "address": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The address of the vendor."
+            },
+            "country": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The country of the vendor."
+            },
+            "description": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Name of the vendor."
+            },
+            "is_active": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether this vendor is active."
+            },
+            "state": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The state if country is US. Note that this field is ignored for non-US countries."
+            },
+            "vendor_tracking_category_option_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Unique identifier of the vendor. At most one of `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` should be provided."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"address\": {\n            \"address_line_1\": \"442 Good St\",\n            \"address_line_2\": null,\n            \"city\": \"Allentown\",\n            \"country\": \"US\",\n            \"postal_code\": \"18102\",\n            \"state\": \"Pennsylvania\"\n          },\n          \"country\": \"US\",\n          \"description\": \"Some description\",\n          \"is_active\": true,\n          \"state\": \"NY\",\n          \"vendor_tracking_category_option_id\": \"60a1a5c9-9b2d-4658-9024-cc4baebf819a\"\n        },\n        \"properties\": {\n          \"accounting_vendor_remote_id\": {\n            \"description\": \"The accounting remote id of the vendor. At most one of `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` should be provided.\",\n            \"type\": \"string\"\n          },\n          \"address\": {\n            \"allOf\": [\n              {\n                \"properties\": {\n                  \"address_line_1\": {\n                    \"description\": \"Primary address line of the vendor.\",\n                    \"type\": \"string\"\n                  },\n                  \"address_line_2\": {\n                    \"description\": \"Secondary address line or suite number of the vendor.\",\n                    \"nullable\": true,\n                    \"type\": \"string\"\n                  },\n                  \"city\": {\n                    \"description\": \"City of the vendor address.\",\n                    \"type\": \"string\"\n                  },\n                  \"country\": {\n                    \"description\": \"Country of the vendor address.\",\n                    \"nullable\": true,\n                    \"type\": \"string\"\n                  },\n                  \"postal_code\": {\n                    \"description\": \"Postal or ZIP code of the vendor address.\",\n                    \"type\": \"string\"\n                  },\n                  \"state\": {\n                    \"description\": \"The state if country is US. Note that this field is ignored for non-US countries.\",\n                    \"nullable\": true,\n                    \"type\": \"string\"\n                  }\n                },\n                \"required\": [\n                  \"address_line_1\",\n                  \"city\",\n                  \"postal_code\"\n                ],\n                \"type\": \"object\"\n              }\n            ],\n            \"description\": \"The address of the vendor.\"\n          },\n          \"country\": {\n            \"description\": \"The country of the vendor.\",\n            \"type\": \"string\"\n          },\n          \"description\": {\n            \"description\": \"Name of the vendor.\",\n            \"type\": \"string\"\n          },\n          \"is_active\": {\n            \"description\": \"Whether this vendor is active.\",\n            \"type\": \"boolean\"\n          },\n          \"state\": {\n            \"default\": null,\n            \"description\": \"The state if country is US. Note that this field is ignored for non-US countries.\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"vendor_tracking_category_option_id\": {\n            \"description\": \"Unique identifier of the vendor. At most one of `accounting_vendor_remote_id` or `vendor_tracking_category_option_id` should be provided.\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          }\n        },\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

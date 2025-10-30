@@ -1,0 +1,307 @@
+{
+  "name": "GetVendorList",
+  "fully_qualified_name": "RampApi.GetVendorList@0.1.0",
+  "description": "Retrieve a list of available vendors.\n\nThis tool retrieves a list of vendors from the Ramp service. It should be called when you need to access or display vendor information.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "filter_by_category_ids",
+        "required": false,
+        "description": "Comma-separated list of integers to filter vendors by Ramp Category Codes.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Show only vendors whose sk_category_id matches a [Ramp Category Code](/developer-api/v1/overview/conventions#ramp-category-codes) in the passed list. Expects a comma-separated list of integers."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "sk_category_ids"
+      },
+      {
+        "name": "created_after_date",
+        "required": false,
+        "description": "Filter vendors created after this date. Use ISO 8601 format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Show only vendors with created_at after this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "from_created_at"
+      },
+      {
+        "name": "pagination_start_id",
+        "required": false,
+        "description": "ID of the last entity from the previous page to retrieve the next set of results. Used for pagination.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "results_per_page",
+        "required": false,
+        "description": "Specify the number of vendor results to return per page, between 2 and 100. The default is 20 if not provided.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "page_size"
+      },
+      {
+        "name": "vendor_owner_identifier",
+        "required": false,
+        "description": "Unique identifier of the user who owns the vendor. Provide a valid user ID string.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique identifier of the user which owns this vendor."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "vendor_owner_id"
+      },
+      {
+        "name": "vendor_name_filter",
+        "required": false,
+        "description": "Filter vendors by name. Provide a string to match vendor names containing this value.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "name"
+      },
+      {
+        "name": "include_only_active_vendors",
+        "required": false,
+        "description": "Set to true to show only active vendors. False includes all vendors.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "is_active"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'get_vendor_list_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "vendors:read"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/vendors",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "sk_category_ids",
+        "tool_parameter_name": "filter_by_category_ids",
+        "description": "Show only vendors whose sk_category_id matches a [Ramp Category Code](/developer-api/v1/overview/conventions#ramp-category-codes) in the passed list. Expects a comma-separated list of integers.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Show only vendors whose sk_category_id matches a [Ramp Category Code](/developer-api/v1/overview/conventions#ramp-category-codes) in the passed list. Expects a comma-separated list of integers."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "from_created_at",
+        "tool_parameter_name": "created_after_date",
+        "description": "Show only vendors with created_at after this date. This parameter should be provided as a datetime string that conforms to ISO 8601",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Show only vendors with created_at after this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_start_id",
+        "description": "The ID of the last entity of the previous page, used for pagination to get the next page.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "page_size",
+        "tool_parameter_name": "results_per_page",
+        "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": 20,
+        "documentation_urls": []
+      },
+      {
+        "name": "vendor_owner_id",
+        "tool_parameter_name": "vendor_owner_identifier",
+        "description": "Unique identifier of the user which owns this vendor.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique identifier of the user which owns this vendor."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "is_active",
+        "tool_parameter_name": "include_only_active_vendors",
+        "description": "",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "name",
+        "tool_parameter_name": "vendor_name_filter",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

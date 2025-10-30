@@ -1,0 +1,290 @@
+{
+  "name": "UpdateSpendingLimit",
+  "fully_qualified_name": "RampApi.UpdateSpendingLimit@0.1.0",
+  "description": "Update a spending limit for a specified resource.\n\nUse this tool to modify the spending limit for a given resource identified by its spend limit ID. It updates the limit and provides confirmation of the change.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "spending_limit_id",
+        "required": true,
+        "description": "A unique string identifier for the spending limit to be updated.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "spend_limit_id"
+      },
+      {
+        "name": "update_spending_limit_details",
+        "required": true,
+        "description": "A JSON object containing details to update the spending limit, including display name, accounting rules, shareability, user ID, permitted spend types, spend program ID, and spending restrictions.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "accounting_rules": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "field_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "UUID of the tracking category"
+                },
+                "field_option_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "UUID of the tracking category option"
+                }
+              },
+              "description": "Set accounting rules for all card transactions and reimbursements (if applicable) for the given spend limit"
+            },
+            "display_name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Change the display name of the limit"
+            },
+            "is_shareable": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Dictates whether the spend limit is shareable among multiple users."
+            },
+            "new_user_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Change the user of the limit"
+            },
+            "permitted_spend_types": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Modify permitted spend types. All fields of permitted_spend_types must be given."
+            },
+            "spend_program_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Specify a spend program to link with.\n            This will override the limit's spending restrictions and permitted spend types with those of the spend program.\n            Pass spend_program_id = None to detach the limit's current spend program.\n            If the spend_program_id field is specified, no other fields may be passed.\n            "
+            },
+            "spending_restrictions": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Modify spending restrictions. If this field is passed, the entire set of new spending restrictions must be passed (i.e. the given spending restrictions will override all existing spending restrictions)."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'put_spend_limit_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "limits:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/limits/{spend_limit_id}",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "spend_limit_id",
+        "tool_parameter_name": "spending_limit_id",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "update_spending_limit_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "accounting_rules": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "field_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "UUID of the tracking category"
+                },
+                "field_option_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "UUID of the tracking category option"
+                }
+              },
+              "description": "Set accounting rules for all card transactions and reimbursements (if applicable) for the given spend limit"
+            },
+            "display_name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Change the display name of the limit"
+            },
+            "is_shareable": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Dictates whether the spend limit is shareable among multiple users."
+            },
+            "new_user_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Change the user of the limit"
+            },
+            "permitted_spend_types": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Modify permitted spend types. All fields of permitted_spend_types must be given."
+            },
+            "spend_program_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Specify a spend program to link with.\n            This will override the limit's spending restrictions and permitted spend types with those of the spend program.\n            Pass spend_program_id = None to detach the limit's current spend program.\n            If the spend_program_id field is specified, no other fields may be passed.\n            "
+            },
+            "spending_restrictions": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Modify spending restrictions. If this field is passed, the entire set of new spending restrictions must be passed (i.e. the given spending restrictions will override all existing spending restrictions)."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"accounting_rules\": [\n            {\n              \"field_id\": \"3f30896b-cd22-47af-b48a-c6c3068bc780\",\n              \"field_option_id\": \"d062e221-9c95-47b5-8dc6-d6c881693caf\"\n            }\n          ],\n          \"display_name\": \"New Display Name\",\n          \"is_shareable\": true,\n          \"new_user_id\": \"b9627abf-6b7e-47bc-a475-7493a8fa9cb4\",\n          \"permitted_spend_types\": {\n            \"primary_card_enabled\": false,\n            \"reimbursements_enabled\": true\n          },\n          \"spending_restrictions\": {\n            \"amount\": 500,\n            \"interval\": \"DAILY\"\n          }\n        },\n        \"properties\": {\n          \"accounting_rules\": {\n            \"description\": \"Set accounting rules for all card transactions and reimbursements (if applicable) for the given spend limit\",\n            \"items\": {\n              \"properties\": {\n                \"field_id\": {\n                  \"description\": \"UUID of the tracking category\",\n                  \"format\": \"uuid\",\n                  \"type\": \"string\"\n                },\n                \"field_option_id\": {\n                  \"description\": \"UUID of the tracking category option\",\n                  \"format\": \"uuid\",\n                  \"type\": \"string\"\n                }\n              },\n              \"required\": [\n                \"field_id\",\n                \"field_option_id\"\n              ],\n              \"type\": \"object\"\n            },\n            \"type\": \"array\"\n          },\n          \"display_name\": {\n            \"description\": \"Change the display name of the limit\",\n            \"type\": \"string\"\n          },\n          \"is_shareable\": {\n            \"description\": \"Dictates whether the spend limit is shareable among multiple users.\",\n            \"type\": \"boolean\"\n          },\n          \"new_user_id\": {\n            \"description\": \"Change the user of the limit\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          },\n          \"permitted_spend_types\": {\n            \"allOf\": [\n              {\n                \"properties\": {\n                  \"primary_card_enabled\": {\n                    \"description\": \"Dictates whether the user's physical card can be linked to this limit.\",\n                    \"type\": \"boolean\"\n                  },\n                  \"reimbursements_enabled\": {\n                    \"description\": \"Dictates whether reimbursements can be submitted against this limit.\",\n                    \"type\": \"boolean\"\n                  }\n                },\n                \"required\": [\n                  \"primary_card_enabled\",\n                  \"reimbursements_enabled\"\n                ],\n                \"type\": \"object\"\n              }\n            ],\n            \"description\": \"Modify permitted spend types. All fields of permitted_spend_types must be given.\"\n          },\n          \"spend_program_id\": {\n            \"description\": \"Specify a spend program to link with.\\n            This will override the limit's spending restrictions and permitted spend types with those of the spend program.\\n            Pass spend_program_id = None to detach the limit's current spend program.\\n            If the spend_program_id field is specified, no other fields may be passed.\\n            \",\n            \"format\": \"uuid\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"spending_restrictions\": {\n            \"allOf\": [\n              {\n                \"properties\": {\n                  \"allowed_categories\": {\n                    \"description\": \" List of [Ramp category codes](/developer-api/v1/overview/conventions#ramp-category-codes) allowed for the limit.\",\n                    \"items\": {\n                      \"type\": \"integer\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"allowed_vendors\": {\n                    \"description\": \"List of merchants allowed for the limit.\",\n                    \"items\": {\n                      \"format\": \"uuid\",\n                      \"type\": \"string\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"blocked_categories\": {\n                    \"description\": \"List of [Ramp category codes](/developer-api/v1/overview/conventions#ramp-category-codes) blocked for the limit.\",\n                    \"items\": {\n                      \"type\": \"integer\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"blocked_mcc_codes\": {\n                    \"items\": {\n                      \"type\": \"string\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"blocked_vendors\": {\n                    \"description\": \"List of merchants  blocked for the limit.\",\n                    \"items\": {\n                      \"format\": \"uuid\",\n                      \"type\": \"string\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"interval\": {\n                    \"description\": \"Time interval to apply limit to.\",\n                    \"enum\": [\n                      \"ANNUAL\",\n                      \"DAILY\",\n                      \"MONTHLY\",\n                      \"QUARTERLY\",\n                      \"TERTIARY\",\n                      \"TOTAL\",\n                      \"WEEKLY\",\n                      \"YEARLY\"\n                    ],\n                    \"type\": \"string\"\n                  },\n                  \"is_one_time_edit\": {\n                    \"description\": \"Dictates whether the spend restriction update is only applicable for the current period. Set to true for a temporary limit increase. Default is false.\",\n                    \"type\": \"boolean\"\n                  },\n                  \"limit\": {\n                    \"allOf\": [\n                      {\n                        \"properties\": {\n                          \"amount\": {\n                            \"description\": \"the amount of money represented in the smallest denomination of the currency. For example, when the currency is USD, then the amount is expressed in cents.\",\n                            \"type\": \"integer\"\n                          },\n                          \"currency_code\": {\n                            \"default\": \"USD\",\n                            \"description\": \"The type of currency, in ISO 4217 format. e.g. USD for US dollars\",\n                            \"type\": \"string\"\n                          }\n                        },\n                        \"required\": [\n                          \"amount\"\n                        ],\n                        \"type\": \"object\"\n                      }\n                    ],\n                    \"description\": \"Total amount limit per interval. Currently we expect the currency to be USD and the amount need to be denominated in cents.\"\n                  },\n                  \"lock_date\": {\n                    \"description\": \"Date to automatically lock the card. If lock date has passed, set to a future date or to null to unlock the card.\",\n                    \"format\": \"date-time\",\n                    \"type\": \"string\"\n                  },\n                  \"transaction_amount_limit\": {\n                    \"allOf\": [\n                      {\n                        \"properties\": {\n                          \"amount\": {\n                            \"description\": \"the amount of money represented in the smallest denomination of the currency. For example, when the currency is USD, then the amount is expressed in cents.\",\n                            \"type\": \"integer\"\n                          },\n                          \"currency_code\": {\n                            \"default\": \"USD\",\n                            \"description\": \"The type of currency, in ISO 4217 format. e.g. USD for US dollars\",\n                            \"type\": \"string\"\n                          }\n                        },\n                        \"required\": [\n                          \"amount\"\n                        ],\n                        \"type\": \"object\"\n                      }\n                    ],\n                    \"description\": \"Max amount per transaction. Currently we expect the currency to be USD and the amount need to be denominated in cents.\"\n                  }\n                },\n                \"required\": [\n                  \"interval\",\n                  \"limit\"\n                ],\n                \"type\": \"object\"\n              }\n            ],\n            \"description\": \"Modify spending restrictions. If this field is passed, the entire set of new spending restrictions must be passed (i.e. the given spending restrictions will override all existing spending restrictions).\"\n          }\n        },\n        \"type\": \"object\",\n        \"x-resource-name\": \"spend_limits\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

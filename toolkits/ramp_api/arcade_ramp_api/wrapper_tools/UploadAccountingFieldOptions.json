@@ -1,0 +1,193 @@
+{
+  "name": "UploadAccountingFieldOptions",
+  "fully_qualified_name": "RampApi.UploadAccountingFieldOptions@0.1.0",
+  "description": "Upload multiple custom accounting field options.\n\nUse this tool to upload up to 500 new field options for a custom accounting field in a single batch. Ensure the options are sanitized and do not already exist to prevent batch rejection. For updating existing options, use the PATCH method instead.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "field_options_batch",
+        "required": true,
+        "description": "A JSON object containing 'field_id' as a string and 'options' as a list of JSON objects. Each option requires a 'code', 'id', and 'value'.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "field_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "id to uniquely identify a custom accounting field within Ramp system"
+            },
+            "options": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "code": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Code of the custom accounting field option; e.g. 400-100."
+                },
+                "id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Remote/external ID of custom accounting field option from ERP system."
+                },
+                "value": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "e.g. Employees:Salaries & Wages"
+                }
+              },
+              "description": "A list of field options for a given custom accounting field."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_custom_field_option_list_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "accounting:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/accounting/field-options",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "field_options_batch",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "field_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "id to uniquely identify a custom accounting field within Ramp system"
+            },
+            "options": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "code": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Code of the custom accounting field option; e.g. 400-100."
+                },
+                "id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Remote/external ID of custom accounting field option from ERP system."
+                },
+                "value": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "e.g. Employees:Salaries & Wages"
+                }
+              },
+              "description": "A list of field options for a given custom accounting field."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"accounting_connection_id\": null,\n          \"field_id\": \"46910cc3-ab41-4b80-b4a7-94dab9f1b795\",\n          \"options\": [\n            {\n              \"id\": \"418\",\n              \"value\": \"Engineering & Design\"\n            },\n            {\n              \"id\": \"514\",\n              \"value\": \"Sales & Marketing\"\n            }\n          ]\n        },\n        \"properties\": {\n          \"field_id\": {\n            \"description\": \"id to uniquely identify a custom accounting field within Ramp system\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          },\n          \"options\": {\n            \"description\": \"A list of field options for a given custom accounting field.\",\n            \"items\": {\n              \"example\": {\n                \"code\": \"400-100\",\n                \"id\": \"514\",\n                \"value\": \"Employees:Salaries & Wages\"\n              },\n              \"properties\": {\n                \"code\": {\n                  \"description\": \"Code of the custom accounting field option; e.g. 400-100.\",\n                  \"type\": \"string\"\n                },\n                \"id\": {\n                  \"description\": \"Remote/external ID of custom accounting field option from ERP system.\",\n                  \"type\": \"string\"\n                },\n                \"value\": {\n                  \"description\": \"e.g. Employees:Salaries & Wages\",\n                  \"type\": \"string\"\n                }\n              },\n              \"required\": [\n                \"id\",\n                \"value\"\n              ],\n              \"type\": \"object\"\n            },\n            \"maxItems\": 500,\n            \"minItems\": 1,\n            \"type\": \"array\"\n          }\n        },\n        \"required\": [\n          \"field_id\",\n          \"options\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

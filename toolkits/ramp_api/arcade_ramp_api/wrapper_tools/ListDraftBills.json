@@ -1,0 +1,406 @@
+{
+  "name": "ListDraftBills",
+  "fully_qualified_name": "RampApi.ListDraftBills@0.1.0",
+  "description": "Retrieve a list of draft bills.\n\nThis tool is used to get a list of draft bills from the Ramp service, including pagination information. Call this when you need to access or manage draft billing entries.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "filter_by_entity_id",
+        "required": false,
+        "description": "Filter draft bills by a specific entity ID.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter draft bills by entity."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "entity_id"
+      },
+      {
+        "name": "filter_by_vendor_id",
+        "required": false,
+        "description": "Filter draft bills by vendor using a vendor ID as a string.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter draft bills by vendor."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "vendor_id"
+      },
+      {
+        "name": "filter_from_creation_date",
+        "required": false,
+        "description": "Filter draft bills with a creation date on or after this ISO 8601 datetime string.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Shows only draft bills with a created_at on or after this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "from_created_at"
+      },
+      {
+        "name": "before_creation_date",
+        "required": false,
+        "description": "Filters draft bills created on or before this date. Provide as an ISO 8601 datetime string.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Shows only draft bills with a created_at on or before this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "to_created_at"
+      },
+      {
+        "name": "due_date_from",
+        "required": false,
+        "description": "Shows draft bills due on or after this date. Use ISO 8601 datetime format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Shows only draft bills with a due_at on or after this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "from_due_date"
+      },
+      {
+        "name": "due_date_before",
+        "required": false,
+        "description": "Filter draft bills by a due date on or before this date. Must be an ISO 8601 datetime string.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Shows only draft bills with a due_at on or before this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "to_due_date"
+      },
+      {
+        "name": "issued_date_start_filter",
+        "required": false,
+        "description": "Filter draft bills issued on or after this date (ISO 8601 format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Shows only draft bills with a issued_at on or after this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "from_issued_date"
+      },
+      {
+        "name": "filter_to_issued_date",
+        "required": false,
+        "description": "Filter draft bills to those issued on or before this date. Use ISO 8601 format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Shows only draft bills with a issued_at on or before this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "to_issued_date"
+      },
+      {
+        "name": "pagination_start_id",
+        "required": false,
+        "description": "The ID of the last entity from the previous page for pagination purposes.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "results_per_page",
+        "required": false,
+        "description": "Number of draft bills to return per page, between 2 and 100. Default is 20.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "page_size"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'get_draft_bill_list_with_pagination'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "bills:read"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/bills/drafts",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "entity_id",
+        "tool_parameter_name": "filter_by_entity_id",
+        "description": "Filter draft bills by entity.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter draft bills by entity."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "vendor_id",
+        "tool_parameter_name": "filter_by_vendor_id",
+        "description": "Filter draft bills by vendor.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter draft bills by vendor."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "from_created_at",
+        "tool_parameter_name": "filter_from_creation_date",
+        "description": "Shows only draft bills with a created_at on or after this date. This parameter should be provided as a datetime string that conforms to ISO 8601",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Shows only draft bills with a created_at on or after this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "to_created_at",
+        "tool_parameter_name": "before_creation_date",
+        "description": "Shows only draft bills with a created_at on or before this date. This parameter should be provided as a datetime string that conforms to ISO 8601",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Shows only draft bills with a created_at on or before this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "from_due_date",
+        "tool_parameter_name": "due_date_from",
+        "description": "Shows only draft bills with a due_at on or after this date. This parameter should be provided as a datetime string that conforms to ISO 8601",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Shows only draft bills with a due_at on or after this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "to_due_date",
+        "tool_parameter_name": "due_date_before",
+        "description": "Shows only draft bills with a due_at on or before this date. This parameter should be provided as a datetime string that conforms to ISO 8601",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Shows only draft bills with a due_at on or before this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "from_issued_date",
+        "tool_parameter_name": "issued_date_start_filter",
+        "description": "Shows only draft bills with a issued_at on or after this date. This parameter should be provided as a datetime string that conforms to ISO 8601",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Shows only draft bills with a issued_at on or after this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "to_issued_date",
+        "tool_parameter_name": "filter_to_issued_date",
+        "description": "Shows only draft bills with a issued_at on or before this date. This parameter should be provided as a datetime string that conforms to ISO 8601",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Shows only draft bills with a issued_at on or before this date. This parameter should be provided as a datetime string that conforms to ISO 8601"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_start_id",
+        "description": "The ID of the last entity of the previous page, used for pagination to get the next page.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "page_size",
+        "tool_parameter_name": "results_per_page",
+        "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": 20,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

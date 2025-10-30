@@ -1,0 +1,307 @@
+{
+  "name": "ListReceipts",
+  "fully_qualified_name": "RampApi.ListReceipts@0.1.0",
+  "description": "Retrieve a list of all receipts.\n\nCall this tool to obtain a list of all receipts. Useful for fetching detailed receipt information.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "filter_created_after_date",
+        "required": false,
+        "description": "Filter receipts created after this date in ISO8601 format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter receipts created after this date (ISO8601 format)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "created_after"
+      },
+      {
+        "name": "filter_created_before_date",
+        "required": false,
+        "description": "Filter receipts created before this date in ISO8601 format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter receipts created before this date (ISO8601 format)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "created_before"
+      },
+      {
+        "name": "specific_transaction_id",
+        "required": false,
+        "description": "Filter receipts for a specific transaction using its ID.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter receipts for a specific transaction."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "transaction_id"
+      },
+      {
+        "name": "filter_from_date",
+        "required": false,
+        "description": "Filter receipts; only include transactions with 'user_transaction_time' after this date (ISO8601 format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter receipts for transactions with a `user_transaction_time` after this date (ISO8601 format)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "from_date"
+      },
+      {
+        "name": "filter_transactions_before_date",
+        "required": false,
+        "description": "Filter receipts for transactions with a `user_transaction_time` before this date (ISO8601 format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter receipts for transactions with a `user_transaction_time` before this date (ISO8601 format)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "to_date"
+      },
+      {
+        "name": "pagination_start_id",
+        "required": false,
+        "description": "The ID of the last receipt from the previous page for pagination.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "results_per_page",
+        "required": false,
+        "description": "The number of results per page, between 2 and 100. Defaults to 20 if unspecified.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "page_size"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'get_receipt_list'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "receipts:read"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/receipts",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "created_after",
+        "tool_parameter_name": "filter_created_after_date",
+        "description": "Filter receipts created after this date (ISO8601 format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter receipts created after this date (ISO8601 format)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "created_before",
+        "tool_parameter_name": "filter_created_before_date",
+        "description": "Filter receipts created before this date (ISO8601 format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter receipts created before this date (ISO8601 format)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "transaction_id",
+        "tool_parameter_name": "specific_transaction_id",
+        "description": "Filter receipts for a specific transaction.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter receipts for a specific transaction."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "from_date",
+        "tool_parameter_name": "filter_from_date",
+        "description": "Filter receipts for transactions with a `user_transaction_time` after this date (ISO8601 format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter receipts for transactions with a `user_transaction_time` after this date (ISO8601 format)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "to_date",
+        "tool_parameter_name": "filter_transactions_before_date",
+        "description": "Filter receipts for transactions with a `user_transaction_time` before this date (ISO8601 format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter receipts for transactions with a `user_transaction_time` before this date (ISO8601 format)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_start_id",
+        "description": "The ID of the last entity of the previous page, used for pagination to get the next page.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "page_size",
+        "tool_parameter_name": "results_per_page",
+        "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": 20,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

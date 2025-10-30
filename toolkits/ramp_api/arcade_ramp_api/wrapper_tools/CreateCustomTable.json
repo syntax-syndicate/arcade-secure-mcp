@@ -1,0 +1,179 @@
+{
+  "name": "CreateCustomTable",
+  "fully_qualified_name": "RampApi.CreateCustomTable@0.1.0",
+  "description": "Create and configure a custom table via API.\n\nUse this tool to create and configure custom tables for data management. Call this when you need to set up a new custom table in your system.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "custom_table_label",
+        "required": true,
+        "description": "The label for the custom table as it will appear in Ramp. This should be a descriptive name for easier identification.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The custom table's label as displayed in Ramp"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "table_label"
+      },
+      {
+        "name": "custom_table_api_name",
+        "required": true,
+        "description": "Specify the API name for the custom table, used to identify it within the system.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The custom table's API name"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "table_name"
+      },
+      {
+        "name": "table_type",
+        "required": false,
+        "description": "The type of the table to be created. Use 'custom_table' for custom tables.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "custom_table"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "type"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_dev_api_configure_custom_tables'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "custom_records:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/custom-records/configure/custom-tables",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "table_label",
+        "tool_parameter_name": "custom_table_label",
+        "description": "The custom table's label as displayed in Ramp",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The custom table's label as displayed in Ramp"
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "table_name",
+        "tool_parameter_name": "custom_table_api_name",
+        "description": "The custom table's API name",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The custom table's API name"
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "type",
+        "tool_parameter_name": "table_type",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "custom_table"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": "custom_table",
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"table_label\": \"Teams\",\n          \"table_name\": \"teams\",\n          \"type\": \"custom_table\"\n        },\n        \"properties\": {\n          \"table_label\": {\n            \"description\": \"The custom table's label as displayed in Ramp\",\n            \"type\": \"string\"\n          },\n          \"table_name\": {\n            \"description\": \"The custom table's API name\",\n            \"type\": \"string\"\n          },\n          \"type\": {\n            \"default\": \"custom_table\",\n            \"enum\": [\n              \"custom_table\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"table_label\",\n          \"table_name\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

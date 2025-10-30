@@ -1,0 +1,406 @@
+{
+  "name": "ListSpendLimits",
+  "fully_qualified_name": "RampApi.ListSpendLimits@0.1.0",
+  "description": "Retrieve a list of spend limits with pagination.\n\nUse this tool to obtain a paginated list of spend limits, which is useful for managing and reviewing financial limits.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "filter_by_display_name",
+        "required": false,
+        "description": "Filter limits by display name. Provide a string to refine the list of spend limits.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by display name."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "display_name"
+      },
+      {
+        "name": "filter_by_entity_id",
+        "required": false,
+        "description": "Filter spend limits by the associated business entity ID.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for limits by associated business entity."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "entity_id"
+      },
+      {
+        "name": "filter_spend_program_id",
+        "required": false,
+        "description": "Filter for spend limits related to the specified spend program. Use the program ID to retrieve relevant limits.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for limits that are associated with the specified spend program"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "spend_program_id"
+      },
+      {
+        "name": "filter_by_user_id",
+        "required": false,
+        "description": "Filter spend limits that are owned by the specified user ID.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for limits that are owned by the user."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "user_id"
+      },
+      {
+        "name": "filter_created_after_date",
+        "required": false,
+        "description": "Filter spend limits created after a certain date. Use ISO8601 format, e.g. 2024-01-15T00:00:00Z.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for spend limits that were created after the specified date. Input need to be presented in ISO8601 format, e.g. 2024-01-15T00:00:00Z"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "created_after"
+      },
+      {
+        "name": "filter_created_before_date",
+        "required": false,
+        "description": "Filter for spend limits created before the specified date in ISO8601 format, e.g., 2024-01-15T00:00:00Z.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for spend limits that were created before the specified date. Input need to be presented in ISO8601 format, e.g. 2024-01-15T00:00:00Z"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "created_before"
+      },
+      {
+        "name": "filter_by_user_access_roles",
+        "required": false,
+        "description": "List of roles to filter on: 'OWNER', 'COOWNER', 'MEMBER'. Accepts repeated parameters or comma-separated values.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "List of user access types to filter on. If provided, only limits with matching access types will be returned. Access types are 'OWNER', 'COOWNER', and 'MEMBER'. Can be provided as repeated parameters or comma-separated values."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "user_access_roles"
+      },
+      {
+        "name": "pagination_start_id",
+        "required": false,
+        "description": "The ID of the last entity from the previous page to retrieve the next set of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "results_per_page",
+        "required": false,
+        "description": "Specify the number of results per page, between 2 and 100. Defaults to 20 if not set.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "page_size"
+      },
+      {
+        "name": "filter_terminated_spend_limits",
+        "required": false,
+        "description": "Set to true to filter and show only terminated spend limits.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter only for terminated spend limits."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "is_terminated"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'get_spend_limit_list_with_pagination'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "limits:read"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/limits",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "display_name",
+        "tool_parameter_name": "filter_by_display_name",
+        "description": "Filter by display name.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter by display name."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "entity_id",
+        "tool_parameter_name": "filter_by_entity_id",
+        "description": "Filter for limits by associated business entity.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for limits by associated business entity."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "spend_program_id",
+        "tool_parameter_name": "filter_spend_program_id",
+        "description": "Filter for limits that are associated with the specified spend program",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for limits that are associated with the specified spend program"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "user_id",
+        "tool_parameter_name": "filter_by_user_id",
+        "description": "Filter for limits that are owned by the user.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for limits that are owned by the user."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "created_after",
+        "tool_parameter_name": "filter_created_after_date",
+        "description": "Filter for spend limits that were created after the specified date. Input need to be presented in ISO8601 format, e.g. 2024-01-15T00:00:00Z",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for spend limits that were created after the specified date. Input need to be presented in ISO8601 format, e.g. 2024-01-15T00:00:00Z"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "created_before",
+        "tool_parameter_name": "filter_created_before_date",
+        "description": "Filter for spend limits that were created before the specified date. Input need to be presented in ISO8601 format, e.g. 2024-01-15T00:00:00Z",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter for spend limits that were created before the specified date. Input need to be presented in ISO8601 format, e.g. 2024-01-15T00:00:00Z"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "is_terminated",
+        "tool_parameter_name": "filter_terminated_spend_limits",
+        "description": "Filter only for terminated spend limits.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Filter only for terminated spend limits."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "user_access_roles",
+        "tool_parameter_name": "filter_by_user_access_roles",
+        "description": "List of user access types to filter on. If provided, only limits with matching access types will be returned. Access types are 'OWNER', 'COOWNER', and 'MEMBER'. Can be provided as repeated parameters or comma-separated values.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "List of user access types to filter on. If provided, only limits with matching access types will be returned. Access types are 'OWNER', 'COOWNER', and 'MEMBER'. Can be provided as repeated parameters or comma-separated values."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_start_id",
+        "description": "The ID of the last entity of the previous page, used for pagination to get the next page.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the last entity of the previous page, used for pagination to get the next page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "page_size",
+        "tool_parameter_name": "results_per_page",
+        "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of results to be returned in each page. The value must be between 2 and 100. If not specified, the default value 20 will be used."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": 20,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

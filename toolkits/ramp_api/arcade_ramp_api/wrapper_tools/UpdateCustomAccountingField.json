@@ -1,0 +1,208 @@
+{
+  "name": "UpdateCustomAccountingField",
+  "fully_qualified_name": "RampApi.UpdateCustomAccountingField@0.1.0",
+  "description": "Update a custom accounting field with new information.\n\nThis tool updates a custom accounting field specified by a field ID. Use this when you need to modify the details of a particular accounting field.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "custom_field_id",
+        "required": true,
+        "description": "The unique identifier for the custom accounting field you want to update. This is required to specify which field to modify.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "field_id"
+      },
+      {
+        "name": "field_display_name",
+        "required": false,
+        "description": "The new display name for the custom accounting field on Ramp.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Update the name of the custom accounting field on Ramp."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "display_name"
+      },
+      {
+        "name": "custom_accounting_field_name",
+        "required": false,
+        "description": "The name of the custom accounting field to update on Ramp.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Name of the custom accounting field."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "name"
+      },
+      {
+        "name": "field_is_splittable",
+        "required": false,
+        "description": "Boolean to determine if the custom accounting field is splittable on Ramp.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Update the is_splittable of the custom accounting field on Ramp."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "is_splittable"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'patch_custom_field_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "accounting:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/accounting/fields/{field_id}",
+    "http_method": "PATCH",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "field_id",
+        "tool_parameter_name": "custom_field_id",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "display_name",
+        "tool_parameter_name": "field_display_name",
+        "description": "Update the name of the custom accounting field on Ramp.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Update the name of the custom accounting field on Ramp."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "is_splittable",
+        "tool_parameter_name": "field_is_splittable",
+        "description": "Update the is_splittable of the custom accounting field on Ramp.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Update the is_splittable of the custom accounting field on Ramp."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "name",
+        "tool_parameter_name": "custom_accounting_field_name",
+        "description": "Name of the custom accounting field.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Name of the custom accounting field."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"display_name\": \"department\",\n          \"is_splittable\": \"True\",\n          \"name\": \"New Department\"\n        },\n        \"properties\": {\n          \"display_name\": {\n            \"description\": \"Update the name of the custom accounting field on Ramp.\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"is_splittable\": {\n            \"description\": \"Update the is_splittable of the custom accounting field on Ramp.\",\n            \"type\": \"boolean\"\n          },\n          \"name\": {\n            \"description\": \"Name of the custom accounting field.\",\n            \"type\": \"string\"\n          }\n        },\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

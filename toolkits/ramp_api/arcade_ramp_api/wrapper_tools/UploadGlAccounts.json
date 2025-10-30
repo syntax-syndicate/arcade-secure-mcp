@@ -1,0 +1,211 @@
+{
+  "name": "UploadGlAccounts",
+  "fully_qualified_name": "RampApi.UploadGlAccounts@0.1.0",
+  "description": "Upload a batch of general ledger accounts to Ramp.\n\nUse this tool to upload up to 500 general ledger accounts in a single batch to Ramp. Ensure data is sanitized and accounts do not already exist on Ramp. If any account is invalid, the entire batch is rejected.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "gl_account_list",
+        "required": true,
+        "description": "JSON array of up to 500 general ledger accounts. Each account should include fields for classification, code, id, and name.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "gl_accounts": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "classification": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "ANY",
+                    "ASSET",
+                    "CREDCARD",
+                    "EQUITY",
+                    "EXPENSE",
+                    "LIABILITY",
+                    "REVENUE",
+                    "UNKNOWN"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "code": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "e.g. 400-100."
+                },
+                "id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Remote/external ID of GL account in ERP system."
+                },
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "e.g. Travel : Travel - Lodging."
+                }
+              },
+              "description": "A list of general ledger accounts that you want to use to classify your Ramp transactions."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_gl_account_list_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "accounting:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/accounting/accounts",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "gl_account_list",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "gl_accounts": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "classification": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "ANY",
+                    "ASSET",
+                    "CREDCARD",
+                    "EQUITY",
+                    "EXPENSE",
+                    "LIABILITY",
+                    "REVENUE",
+                    "UNKNOWN"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "code": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "e.g. 400-100."
+                },
+                "id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Remote/external ID of GL account in ERP system."
+                },
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "e.g. Travel : Travel - Lodging."
+                }
+              },
+              "description": "A list of general ledger accounts that you want to use to classify your Ramp transactions."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"accounting_connection_id\": null,\n          \"gl_accounts\": [\n            {\n              \"classification\": \"EXPENSE\",\n              \"code\": \"6410\",\n              \"id\": \"514\",\n              \"name\": \"Employees:Salaries & Wages\"\n            },\n            {\n              \"classification\": \"EXPENSE\",\n              \"id\": \"418\",\n              \"name\": \"Office/Admin:Phone & Internet\"\n            },\n            {\n              \"classification\": \"REVENUE\",\n              \"id\": \"425\",\n              \"name\": \"Sales\"\n            }\n          ]\n        },\n        \"properties\": {\n          \"gl_accounts\": {\n            \"description\": \"A list of general ledger accounts that you want to use to classify your Ramp transactions.\",\n            \"items\": {\n              \"example\": {\n                \"classification\": \"EXPENSE\",\n                \"code\": \"6410\",\n                \"id\": \"514\",\n                \"name\": \"Employees:Salaries & Wages\"\n              },\n              \"properties\": {\n                \"classification\": {\n                  \"enum\": [\n                    \"ANY\",\n                    \"ASSET\",\n                    \"CREDCARD\",\n                    \"EQUITY\",\n                    \"EXPENSE\",\n                    \"LIABILITY\",\n                    \"REVENUE\",\n                    \"UNKNOWN\"\n                  ],\n                  \"type\": \"string\"\n                },\n                \"code\": {\n                  \"description\": \"e.g. 400-100.\",\n                  \"type\": \"string\"\n                },\n                \"id\": {\n                  \"description\": \"Remote/external ID of GL account in ERP system.\",\n                  \"type\": \"string\"\n                },\n                \"name\": {\n                  \"description\": \"e.g. Travel : Travel - Lodging.\",\n                  \"type\": \"string\"\n                }\n              },\n              \"required\": [\n                \"classification\",\n                \"id\",\n                \"name\"\n              ],\n              \"type\": \"object\"\n            },\n            \"maxItems\": 500,\n            \"minItems\": 1,\n            \"type\": \"array\"\n          }\n        },\n        \"required\": [\n          \"gl_accounts\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

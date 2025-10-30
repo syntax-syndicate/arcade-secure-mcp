@@ -1,0 +1,225 @@
+{
+  "name": "CreateItemReceipt",
+  "fully_qualified_name": "RampApi.CreateItemReceipt@0.1.0",
+  "description": "Create a new item receipt for inventory tracking.\n\nThis tool is used to create a new item receipt, typically for inventory tracking purposes. Call this tool when you need to log a received item in your system.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "item_receipt_details",
+        "required": true,
+        "description": "A JSON object containing details of the item receipt, including 'item_receipt_line_items', 'item_receipt_number', 'memo', 'purchase_order_id', and 'received_at'.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "item_receipt_line_items": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "purchase_order_line_item_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Unique identifier of the purchase order line item being received."
+                },
+                "unit_quantity": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The number of units of an item recieved; required for purchase order line items with inventory item accounting field selections."
+                }
+              },
+              "description": "Item receipt line items."
+            },
+            "item_receipt_number": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Item receipt number."
+            },
+            "memo": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Memo for the item receipt."
+            },
+            "purchase_order_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Unique identifier of the purchase order this item receipt is attached to."
+            },
+            "received_at": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The date the vendor will deliver the goods or services."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_item_receipts_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "item_receipts:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/item-receipts",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "item_receipt_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "item_receipt_line_items": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "purchase_order_line_item_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Unique identifier of the purchase order line item being received."
+                },
+                "unit_quantity": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The number of units of an item recieved; required for purchase order line items with inventory item accounting field selections."
+                }
+              },
+              "description": "Item receipt line items."
+            },
+            "item_receipt_number": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Item receipt number."
+            },
+            "memo": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Memo for the item receipt."
+            },
+            "purchase_order_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Unique identifier of the purchase order this item receipt is attached to."
+            },
+            "received_at": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The date the vendor will deliver the goods or services."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"item_receipt_line_items\": [\n            {\n              \"purchase_order_line_item_id\": \"39786dab-ce04-4033-84f1-913016a90b9d\"\n            },\n            {\n              \"purchase_order_line_item_id\": \"7736417a-6a9f-4989-96ad-720b320d0afa\",\n              \"unit_quantity\": 2\n            }\n          ],\n          \"item_receipt_number\": \"IR-1234\",\n          \"memo\": \"my item receipt\",\n          \"purchase_order_id\": \"0a6c6475-94c6-4556-b45e-10f5360f3c60\",\n          \"receieved_at\": \"2025-03-20\"\n        },\n        \"properties\": {\n          \"item_receipt_line_items\": {\n            \"description\": \"Item receipt line items.\",\n            \"items\": {\n              \"properties\": {\n                \"purchase_order_line_item_id\": {\n                  \"description\": \"Unique identifier of the purchase order line item being received.\",\n                  \"format\": \"uuid\",\n                  \"type\": \"string\"\n                },\n                \"unit_quantity\": {\n                  \"default\": null,\n                  \"description\": \"The number of units of an item recieved; required for purchase order line items with inventory item accounting field selections.\",\n                  \"nullable\": true,\n                  \"type\": \"integer\"\n                }\n              },\n              \"required\": [\n                \"purchase_order_line_item_id\"\n              ],\n              \"type\": \"object\"\n            },\n            \"type\": \"array\"\n          },\n          \"item_receipt_number\": {\n            \"description\": \"Item receipt number.\",\n            \"type\": \"string\"\n          },\n          \"memo\": {\n            \"default\": null,\n            \"description\": \"Memo for the item receipt.\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"purchase_order_id\": {\n            \"description\": \"Unique identifier of the purchase order this item receipt is attached to.\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          },\n          \"received_at\": {\n            \"description\": \"The date the vendor will deliver the goods or services.\",\n            \"format\": \"date\",\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"item_receipt_line_items\",\n          \"item_receipt_number\",\n          \"purchase_order_id\",\n          \"received_at\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

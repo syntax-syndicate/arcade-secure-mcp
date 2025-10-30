@@ -1,0 +1,349 @@
+{
+  "name": "CreateSpendProgram",
+  "fully_qualified_name": "RampApi.CreateSpendProgram@0.1.0",
+  "description": "Create a spend program to manage expenses.\n\nThis tool is used to create a new spend program, helping in organizing and managing expenses. It should be called when there is a need to set up a structured spending plan.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "spend_program_details",
+        "required": true,
+        "description": "JSON object containing details such as description, display name, icon, shareability, issuance rules, card issuance preference, spend types, and restrictions for the spend program.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "description": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Description of the spend program."
+            },
+            "display_name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Display name of the spend program."
+            },
+            "icon": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "AccountingServicesIcon",
+                "AdvertisingIcon",
+                "CONTRACTORS_AND_PROFESSIONAL_SERVICES",
+                "CUSTOM",
+                "CardIcon",
+                "EducationStipendIcon",
+                "EmployeeRewardsIcon",
+                "GroundTransportationIcon",
+                "LegalFeesIcon",
+                "LodgingIcon",
+                "LunchOrderingIcon",
+                "OnboardingIcon",
+                "PerDiemCardIcon",
+                "SOFTWARE",
+                "SaasSubscriptionIcon",
+                "SoftwareTrialIcon",
+                "SuppliesIcon",
+                "TeamSocialIcon",
+                "TravelExpensesIcon",
+                "VirtualEventIcon",
+                "WellnessIcon",
+                "WorkFromHomeIcon",
+                "advertising",
+                "airlines",
+                "bills",
+                "business",
+                "car_services",
+                "contractor",
+                "education",
+                "entertainment",
+                "event_balloons",
+                "event_virtual",
+                "food",
+                "fuel_and_gas",
+                "general_expense",
+                "general_merchandise",
+                "gift",
+                "government_services",
+                "internet_and_phone",
+                "legal",
+                "lodging",
+                "lodging_room",
+                "newspaper",
+                "office",
+                "physical_card",
+                "procurement_checklist",
+                "procurement_intake",
+                "professional_services",
+                "restaurants",
+                "reward",
+                "saas_software",
+                "shipping",
+                "travel_misc",
+                "wellness"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The template icon for the spend program."
+            },
+            "is_shareable": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Dictates whether the spend program is shareable among multiple users."
+            },
+            "issuance_rules": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Spend Program Issuance Rules can be set for requests or default issuance of Limits from a program. Set whether a program is requestable or issued by default for a given set of users and their attributes (department, locations, and custom fields). If you'd like to give these permissions to all employees, you can set `applies_to_all` to `True`. Feel free to ignore this if you don't want any custom requestability or issuance logic."
+            },
+            "issue_physical_card_if_needed": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Dictates whether the spend program should issue a physical card if the user does not have one."
+            },
+            "permitted_spend_types": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Specifies the permitted spend types for the spend program."
+            },
+            "spending_restrictions": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A set of restrictions imposed on the spend program."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_spend_program_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "spend_programs:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/spend-programs",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "spend_program_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "description": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Description of the spend program."
+            },
+            "display_name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Display name of the spend program."
+            },
+            "icon": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "AccountingServicesIcon",
+                "AdvertisingIcon",
+                "CONTRACTORS_AND_PROFESSIONAL_SERVICES",
+                "CUSTOM",
+                "CardIcon",
+                "EducationStipendIcon",
+                "EmployeeRewardsIcon",
+                "GroundTransportationIcon",
+                "LegalFeesIcon",
+                "LodgingIcon",
+                "LunchOrderingIcon",
+                "OnboardingIcon",
+                "PerDiemCardIcon",
+                "SOFTWARE",
+                "SaasSubscriptionIcon",
+                "SoftwareTrialIcon",
+                "SuppliesIcon",
+                "TeamSocialIcon",
+                "TravelExpensesIcon",
+                "VirtualEventIcon",
+                "WellnessIcon",
+                "WorkFromHomeIcon",
+                "advertising",
+                "airlines",
+                "bills",
+                "business",
+                "car_services",
+                "contractor",
+                "education",
+                "entertainment",
+                "event_balloons",
+                "event_virtual",
+                "food",
+                "fuel_and_gas",
+                "general_expense",
+                "general_merchandise",
+                "gift",
+                "government_services",
+                "internet_and_phone",
+                "legal",
+                "lodging",
+                "lodging_room",
+                "newspaper",
+                "office",
+                "physical_card",
+                "procurement_checklist",
+                "procurement_intake",
+                "professional_services",
+                "restaurants",
+                "reward",
+                "saas_software",
+                "shipping",
+                "travel_misc",
+                "wellness"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The template icon for the spend program."
+            },
+            "is_shareable": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Dictates whether the spend program is shareable among multiple users."
+            },
+            "issuance_rules": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Spend Program Issuance Rules can be set for requests or default issuance of Limits from a program. Set whether a program is requestable or issued by default for a given set of users and their attributes (department, locations, and custom fields). If you'd like to give these permissions to all employees, you can set `applies_to_all` to `True`. Feel free to ignore this if you don't want any custom requestability or issuance logic."
+            },
+            "issue_physical_card_if_needed": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Dictates whether the spend program should issue a physical card if the user does not have one."
+            },
+            "permitted_spend_types": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Specifies the permitted spend types for the spend program."
+            },
+            "spending_restrictions": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A set of restrictions imposed on the spend program."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"properties\": {\n          \"description\": {\n            \"description\": \"Description of the spend program.\",\n            \"type\": \"string\"\n          },\n          \"display_name\": {\n            \"description\": \"Display name of the spend program.\",\n            \"type\": \"string\"\n          },\n          \"icon\": {\n            \"description\": \"The template icon for the spend program.\",\n            \"enum\": [\n              \"AccountingServicesIcon\",\n              \"AdvertisingIcon\",\n              \"CONTRACTORS_AND_PROFESSIONAL_SERVICES\",\n              \"CUSTOM\",\n              \"CardIcon\",\n              \"EducationStipendIcon\",\n              \"EmployeeRewardsIcon\",\n              \"GroundTransportationIcon\",\n              \"LegalFeesIcon\",\n              \"LodgingIcon\",\n              \"LunchOrderingIcon\",\n              \"OnboardingIcon\",\n              \"PerDiemCardIcon\",\n              \"SOFTWARE\",\n              \"SaasSubscriptionIcon\",\n              \"SoftwareTrialIcon\",\n              \"SuppliesIcon\",\n              \"TeamSocialIcon\",\n              \"TravelExpensesIcon\",\n              \"VirtualEventIcon\",\n              \"WellnessIcon\",\n              \"WorkFromHomeIcon\",\n              \"advertising\",\n              \"airlines\",\n              \"bills\",\n              \"business\",\n              \"car_services\",\n              \"contractor\",\n              \"education\",\n              \"entertainment\",\n              \"event_balloons\",\n              \"event_virtual\",\n              \"food\",\n              \"fuel_and_gas\",\n              \"general_expense\",\n              \"general_merchandise\",\n              \"gift\",\n              \"government_services\",\n              \"internet_and_phone\",\n              \"legal\",\n              \"lodging\",\n              \"lodging_room\",\n              \"newspaper\",\n              \"office\",\n              \"physical_card\",\n              \"procurement_checklist\",\n              \"procurement_intake\",\n              \"professional_services\",\n              \"restaurants\",\n              \"reward\",\n              \"saas_software\",\n              \"shipping\",\n              \"travel_misc\",\n              \"wellness\"\n            ],\n            \"type\": \"string\"\n          },\n          \"is_shareable\": {\n            \"default\": false,\n            \"description\": \"Dictates whether the spend program is shareable among multiple users.\",\n            \"type\": \"boolean\"\n          },\n          \"issuance_rules\": {\n            \"allOf\": [\n              {\n                \"properties\": {\n                  \"automatic\": {\n                    \"allOf\": [\n                      {\n                        \"properties\": {\n                          \"applies_to_all\": {\n                            \"default\": false,\n                            \"description\": \"Dictates whether this rule should apply to all employees or not (if True, location_ids, department_ids, and user_custom_field_ids should be null).\",\n                            \"type\": \"boolean\"\n                          },\n                          \"department_ids\": {\n                            \"description\": \"List of departments whose users are able to request or be issued this spend program.\",\n                            \"items\": {\n                              \"format\": \"uuid\",\n                              \"type\": \"string\"\n                            },\n                            \"type\": \"array\"\n                          },\n                          \"location_ids\": {\n                            \"description\": \"List of locations whose users are able to request or be issued this spend program.\",\n                            \"items\": {\n                              \"format\": \"uuid\",\n                              \"type\": \"string\"\n                            },\n                            \"type\": \"array\"\n                          },\n                          \"user_custom_field_ids\": {\n                            \"items\": {\n                              \"format\": \"uuid\",\n                              \"type\": \"string\"\n                            },\n                            \"type\": \"array\"\n                          }\n                        },\n                        \"type\": \"object\"\n                      }\n                    ],\n                    \"description\": \"Set of rules for having spend programs issued by default to users\",\n                    \"nullable\": true\n                  },\n                  \"requestable\": {\n                    \"allOf\": [\n                      {\n                        \"properties\": {\n                          \"applies_to_all\": {\n                            \"default\": false,\n                            \"description\": \"Dictates whether this rule should apply to all employees or not (if True, location_ids, department_ids, and user_custom_field_ids should be null).\",\n                            \"type\": \"boolean\"\n                          },\n                          \"department_ids\": {\n                            \"description\": \"List of departments whose users are able to request or be issued this spend program.\",\n                            \"items\": {\n                              \"format\": \"uuid\",\n                              \"type\": \"string\"\n                            },\n                            \"type\": \"array\"\n                          },\n                          \"location_ids\": {\n                            \"description\": \"List of locations whose users are able to request or be issued this spend program.\",\n                            \"items\": {\n                              \"format\": \"uuid\",\n                              \"type\": \"string\"\n                            },\n                            \"type\": \"array\"\n                          },\n                          \"user_custom_field_ids\": {\n                            \"items\": {\n                              \"format\": \"uuid\",\n                              \"type\": \"string\"\n                            },\n                            \"type\": \"array\"\n                          }\n                        },\n                        \"type\": \"object\"\n                      }\n                    ],\n                    \"description\": \"Set of rules for users requesting spend programs.\",\n                    \"nullable\": true\n                  }\n                },\n                \"type\": \"object\"\n              }\n            ],\n            \"default\": null,\n            \"description\": \"Spend Program Issuance Rules can be set for requests or default issuance of Limits from a program. Set whether a program is requestable or issued by default for a given set of users and their attributes (department, locations, and custom fields). If you'd like to give these permissions to all employees, you can set `applies_to_all` to `True`. Feel free to ignore this if you don't want any custom requestability or issuance logic.\",\n            \"nullable\": true\n          },\n          \"issue_physical_card_if_needed\": {\n            \"default\": false,\n            \"description\": \"Dictates whether the spend program should issue a physical card if the user does not have one.\",\n            \"type\": \"boolean\"\n          },\n          \"permitted_spend_types\": {\n            \"allOf\": [\n              {\n                \"properties\": {\n                  \"primary_card_enabled\": {\n                    \"description\": \"Dictates whether the user's physical card can be linked to this limit.\",\n                    \"type\": \"boolean\"\n                  },\n                  \"reimbursements_enabled\": {\n                    \"description\": \"Dictates whether reimbursements can be submitted against this limit.\",\n                    \"type\": \"boolean\"\n                  }\n                },\n                \"required\": [\n                  \"primary_card_enabled\",\n                  \"reimbursements_enabled\"\n                ],\n                \"type\": \"object\"\n              }\n            ],\n            \"description\": \"Specifies the permitted spend types for the spend program.\"\n          },\n          \"spending_restrictions\": {\n            \"allOf\": [\n              {\n                \"properties\": {\n                  \"allowed_categories\": {\n                    \"description\": \" List of [Ramp category codes](/developer-api/v1/overview/conventions#ramp-category-codes) allowed for the limit.\",\n                    \"items\": {\n                      \"type\": \"integer\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"allowed_vendors\": {\n                    \"description\": \"List of merchants allowed for the limit.\",\n                    \"items\": {\n                      \"format\": \"uuid\",\n                      \"type\": \"string\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"blocked_categories\": {\n                    \"description\": \"List of [Ramp category codes](/developer-api/v1/overview/conventions#ramp-category-codes) blocked for the limit.\",\n                    \"items\": {\n                      \"type\": \"integer\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"blocked_mcc_codes\": {\n                    \"items\": {\n                      \"type\": \"string\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"blocked_vendors\": {\n                    \"description\": \"List of merchants  blocked for the limit.\",\n                    \"items\": {\n                      \"format\": \"uuid\",\n                      \"type\": \"string\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"interval\": {\n                    \"description\": \"Time interval to apply limit to.\",\n                    \"enum\": [\n                      \"ANNUAL\",\n                      \"DAILY\",\n                      \"MONTHLY\",\n                      \"QUARTERLY\",\n                      \"TERTIARY\",\n                      \"TOTAL\",\n                      \"WEEKLY\",\n                      \"YEARLY\"\n                    ],\n                    \"type\": \"string\"\n                  },\n                  \"limit\": {\n                    \"allOf\": [\n                      {\n                        \"properties\": {\n                          \"amount\": {\n                            \"description\": \"the amount of money represented in the smallest denomination of the currency. For example, when the currency is USD, then the amount is expressed in cents.\",\n                            \"type\": \"integer\"\n                          },\n                          \"currency_code\": {\n                            \"default\": \"USD\",\n                            \"description\": \"The type of currency, in ISO 4217 format. e.g. USD for US dollars\",\n                            \"type\": \"string\"\n                          }\n                        },\n                        \"required\": [\n                          \"amount\"\n                        ],\n                        \"type\": \"object\"\n                      }\n                    ],\n                    \"description\": \"Total amount limit per interval. Currently we expect the currency to be USD and the amount need to be denominated in cents.\"\n                  },\n                  \"lock_date\": {\n                    \"description\": \"Date to automatically lock the card. If lock date has passed, set to a future date or to null to unlock the card.\",\n                    \"format\": \"date-time\",\n                    \"type\": \"string\"\n                  },\n                  \"transaction_amount_limit\": {\n                    \"allOf\": [\n                      {\n                        \"properties\": {\n                          \"amount\": {\n                            \"description\": \"the amount of money represented in the smallest denomination of the currency. For example, when the currency is USD, then the amount is expressed in cents.\",\n                            \"type\": \"integer\"\n                          },\n                          \"currency_code\": {\n                            \"default\": \"USD\",\n                            \"description\": \"The type of currency, in ISO 4217 format. e.g. USD for US dollars\",\n                            \"type\": \"string\"\n                          }\n                        },\n                        \"required\": [\n                          \"amount\"\n                        ],\n                        \"type\": \"object\"\n                      }\n                    ],\n                    \"description\": \"Max amount per transaction. Currently we expect the currency to be USD and the amount need to be denominated in cents.\"\n                  }\n                },\n                \"required\": [\n                  \"interval\",\n                  \"limit\"\n                ],\n                \"type\": \"object\"\n              }\n            ],\n            \"description\": \"A set of restrictions imposed on the spend program.\"\n          }\n        },\n        \"required\": [\n          \"description\",\n          \"display_name\",\n          \"icon\",\n          \"permitted_spend_types\",\n          \"spending_restrictions\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

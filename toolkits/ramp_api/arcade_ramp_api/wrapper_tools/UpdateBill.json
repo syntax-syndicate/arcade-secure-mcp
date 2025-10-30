@@ -1,0 +1,616 @@
+{
+  "name": "UpdateBill",
+  "fully_qualified_name": "RampApi.UpdateBill@0.1.0",
+  "description": "Update details of an existing bill.\n\nUse this tool to make changes to an existing bill's data. It should be called when modifications to bill details are necessary.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "bill_identifier",
+        "required": true,
+        "description": "The unique identifier of the bill to be updated. This is required to specify which bill to modify.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "bill_id"
+      },
+      {
+        "name": "bill_update_details",
+        "required": true,
+        "description": "JSON object containing details to update a bill, including due date, entity ID, line items, memo, payment method, and other related data.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "accounting_field_selections": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "field_external_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Remote ID of accounting field. This is the external ID, likely from ERP system."
+                },
+                "field_option_external_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Remote ID of accounting field option. This is the external ID, likely from ERP system."
+                }
+              },
+              "description": "List of accounting field options selected to code the bill."
+            },
+            "due_at": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Due date of the bill."
+            },
+            "entity_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Associated business entity."
+            },
+            "inventory_line_items": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "accounting_field_selections": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "field_external_id": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Remote ID of accounting field. This is the external ID, likely from ERP system."
+                    },
+                    "field_option_external_id": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Remote ID of accounting field option. This is the external ID, likely from ERP system."
+                    }
+                  },
+                  "description": null
+                },
+                "memo": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "unit_price": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "unit_quantity": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": "List of inventory line items related to the bill."
+            },
+            "invoice_number": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The invoice number on the bill."
+            },
+            "issued_at": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Issued date of the bill."
+            },
+            "line_items": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "accounting_field_selections": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "field_external_id": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Remote ID of accounting field. This is the external ID, likely from ERP system."
+                    },
+                    "field_option_external_id": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Remote ID of accounting field option. This is the external ID, likely from ERP system."
+                    }
+                  },
+                  "description": null
+                },
+                "amount": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "memo": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": "List of line items related to the bill."
+            },
+            "memo": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Memo of the bill."
+            },
+            "payment_method": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "ACH",
+                "AUTOMATIC_CARD_PAYMENT",
+                "CARD",
+                "CHECK",
+                "CRYPTO_WALLET_TRANSFER",
+                "DOMESTIC_WIRE",
+                "INTERNATIONAL",
+                "LOCAL_BANK_TRANSFER",
+                "ONE_TIME_CARD",
+                "ONE_TIME_CARD_DELIVERY",
+                "PAID_MANUALLY",
+                "SWIFT",
+                "UNSPECIFIED",
+                "VENDOR_CREDIT"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "Payment method of the bill."
+            },
+            "posting_date": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The date the bill is posted to the accounting system."
+            },
+            "purchase_order_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Unique identifier of the purchase order to match this bill to. Set to null to remove the link to the purchase order from the bill."
+            },
+            "remote_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "An ID that identifies the bill on client's side."
+            },
+            "vendor_contact_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Unique identifier of vendor contact, must be associated with passed vendor."
+            },
+            "vendor_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Unique identifier of bill vendor."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'patch_bill_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "bills:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/bills/{bill_id}",
+    "http_method": "PATCH",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "bill_id",
+        "tool_parameter_name": "bill_identifier",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "bill_update_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "accounting_field_selections": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "field_external_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Remote ID of accounting field. This is the external ID, likely from ERP system."
+                },
+                "field_option_external_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Remote ID of accounting field option. This is the external ID, likely from ERP system."
+                }
+              },
+              "description": "List of accounting field options selected to code the bill."
+            },
+            "due_at": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Due date of the bill."
+            },
+            "entity_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Associated business entity."
+            },
+            "inventory_line_items": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "accounting_field_selections": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "field_external_id": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Remote ID of accounting field. This is the external ID, likely from ERP system."
+                    },
+                    "field_option_external_id": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Remote ID of accounting field option. This is the external ID, likely from ERP system."
+                    }
+                  },
+                  "description": null
+                },
+                "memo": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "unit_price": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "unit_quantity": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": "List of inventory line items related to the bill."
+            },
+            "invoice_number": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The invoice number on the bill."
+            },
+            "issued_at": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Issued date of the bill."
+            },
+            "line_items": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "accounting_field_selections": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "field_external_id": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Remote ID of accounting field. This is the external ID, likely from ERP system."
+                    },
+                    "field_option_external_id": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Remote ID of accounting field option. This is the external ID, likely from ERP system."
+                    }
+                  },
+                  "description": null
+                },
+                "amount": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "memo": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": "List of line items related to the bill."
+            },
+            "memo": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Memo of the bill."
+            },
+            "payment_method": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "ACH",
+                "AUTOMATIC_CARD_PAYMENT",
+                "CARD",
+                "CHECK",
+                "CRYPTO_WALLET_TRANSFER",
+                "DOMESTIC_WIRE",
+                "INTERNATIONAL",
+                "LOCAL_BANK_TRANSFER",
+                "ONE_TIME_CARD",
+                "ONE_TIME_CARD_DELIVERY",
+                "PAID_MANUALLY",
+                "SWIFT",
+                "UNSPECIFIED",
+                "VENDOR_CREDIT"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "Payment method of the bill."
+            },
+            "posting_date": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The date the bill is posted to the accounting system."
+            },
+            "purchase_order_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Unique identifier of the purchase order to match this bill to. Set to null to remove the link to the purchase order from the bill."
+            },
+            "remote_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "An ID that identifies the bill on client's side."
+            },
+            "vendor_contact_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Unique identifier of vendor contact, must be associated with passed vendor."
+            },
+            "vendor_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Unique identifier of bill vendor."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"accounting_field_selections\": [\n            {\n              \"field_external_id\": \"b3B0aW9uX2lk\",\n              \"field_option_external_id\": \"aln2l3B0aW9uX2lk\"\n            }\n          ],\n          \"due_at\": \"2024-10-15\",\n          \"entity_id\": \"1cc4b57c-fe4a-4425-90f1-9019d06376b3\",\n          \"inventory_line_items\": [\n            {\n              \"accounting_field_selections\": [\n                {\n                  \"field_external_id\": \"aa73laMazi2\",\n                  \"field_option_external_id\": \"abk3Rkfnls25\"\n                }\n              ],\n              \"memo\": \"Pens\",\n              \"unit_price\": 55,\n              \"unit_quantity\": 2\n            }\n          ],\n          \"invoice_number\": \"123\",\n          \"issued_at\": \"2024-08-15\",\n          \"line_items\": [\n            {\n              \"accounting_field_selections\": [],\n              \"amount\": 100,\n              \"memo\": \"Printing services\"\n            }\n          ],\n          \"memo\": \"Office supplies\",\n          \"payment_method\": \"ONE_TIME_CARD_DELIVERY\",\n          \"posting_date\": null,\n          \"remote_id\": \"bo2f1lAnkf3llL\",\n          \"vendor_contact_id\": \"12f55361-8c7f-42dc-8667-64926d330b80\",\n          \"vendor_id\": \"c0c89fa8-976e-428d-938d-a5ec89838474\"\n        },\n        \"properties\": {\n          \"accounting_field_selections\": {\n            \"description\": \"List of accounting field options selected to code the bill.\",\n            \"items\": {\n              \"properties\": {\n                \"field_external_id\": {\n                  \"description\": \"Remote ID of accounting field. This is the external ID, likely from ERP system.\",\n                  \"type\": \"string\"\n                },\n                \"field_option_external_id\": {\n                  \"description\": \"Remote ID of accounting field option. This is the external ID, likely from ERP system.\",\n                  \"type\": \"string\"\n                }\n              },\n              \"required\": [\n                \"field_external_id\",\n                \"field_option_external_id\"\n              ],\n              \"type\": \"object\"\n            },\n            \"type\": \"array\"\n          },\n          \"due_at\": {\n            \"description\": \"Due date of the bill.\",\n            \"format\": \"date\",\n            \"type\": \"string\"\n          },\n          \"entity_id\": {\n            \"description\": \"Associated business entity.\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          },\n          \"inventory_line_items\": {\n            \"description\": \"List of inventory line items related to the bill.\",\n            \"items\": {\n              \"properties\": {\n                \"accounting_field_selections\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"field_external_id\": {\n                        \"description\": \"Remote ID of accounting field. This is the external ID, likely from ERP system.\",\n                        \"type\": \"string\"\n                      },\n                      \"field_option_external_id\": {\n                        \"description\": \"Remote ID of accounting field option. This is the external ID, likely from ERP system.\",\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"required\": [\n                      \"field_external_id\",\n                      \"field_option_external_id\"\n                    ],\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                },\n                \"memo\": {\n                  \"default\": null,\n                  \"nullable\": true,\n                  \"type\": \"string\"\n                },\n                \"unit_price\": {\n                  \"minimum\": 0,\n                  \"oneOf\": [\n                    {\n                      \"format\": \"decimal\",\n                      \"type\": \"string\"\n                    },\n                    {\n                      \"type\": \"number\"\n                    }\n                  ]\n                },\n                \"unit_quantity\": {\n                  \"minimum\": 0,\n                  \"type\": \"integer\"\n                }\n              },\n              \"required\": [\n                \"unit_price\",\n                \"unit_quantity\"\n              ],\n              \"type\": \"object\"\n            },\n            \"nullable\": true,\n            \"type\": \"array\"\n          },\n          \"invoice_number\": {\n            \"description\": \"The invoice number on the bill.\",\n            \"maxLength\": 20,\n            \"type\": \"string\"\n          },\n          \"issued_at\": {\n            \"description\": \"Issued date of the bill.\",\n            \"format\": \"date\",\n            \"type\": \"string\"\n          },\n          \"line_items\": {\n            \"description\": \"List of line items related to the bill.\",\n            \"items\": {\n              \"properties\": {\n                \"accounting_field_selections\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"field_external_id\": {\n                        \"description\": \"Remote ID of accounting field. This is the external ID, likely from ERP system.\",\n                        \"type\": \"string\"\n                      },\n                      \"field_option_external_id\": {\n                        \"description\": \"Remote ID of accounting field option. This is the external ID, likely from ERP system.\",\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"required\": [\n                      \"field_external_id\",\n                      \"field_option_external_id\"\n                    ],\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                },\n                \"amount\": {\n                  \"oneOf\": [\n                    {\n                      \"format\": \"decimal\",\n                      \"type\": \"string\"\n                    },\n                    {\n                      \"type\": \"number\"\n                    }\n                  ]\n                },\n                \"memo\": {\n                  \"default\": null,\n                  \"nullable\": true,\n                  \"type\": \"string\"\n                }\n              },\n              \"required\": [\n                \"amount\"\n              ],\n              \"type\": \"object\"\n            },\n            \"nullable\": true,\n            \"type\": \"array\"\n          },\n          \"memo\": {\n            \"description\": \"Memo of the bill.\",\n            \"maxLength\": 1000,\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"payment_method\": {\n            \"description\": \"Payment method of the bill.\",\n            \"enum\": [\n              \"ACH\",\n              \"AUTOMATIC_CARD_PAYMENT\",\n              \"CARD\",\n              \"CHECK\",\n              \"CRYPTO_WALLET_TRANSFER\",\n              \"DOMESTIC_WIRE\",\n              \"INTERNATIONAL\",\n              \"LOCAL_BANK_TRANSFER\",\n              \"ONE_TIME_CARD\",\n              \"ONE_TIME_CARD_DELIVERY\",\n              \"PAID_MANUALLY\",\n              \"SWIFT\",\n              \"UNSPECIFIED\",\n              \"VENDOR_CREDIT\"\n            ],\n            \"type\": \"string\"\n          },\n          \"posting_date\": {\n            \"description\": \"The date the bill is posted to the accounting system.\",\n            \"format\": \"date\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"purchase_order_id\": {\n            \"description\": \"Unique identifier of the purchase order to match this bill to. Set to null to remove the link to the purchase order from the bill.\",\n            \"format\": \"uuid\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"remote_id\": {\n            \"description\": \"An ID that identifies the bill on client's side.\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"vendor_contact_id\": {\n            \"description\": \"Unique identifier of vendor contact, must be associated with passed vendor.\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          },\n          \"vendor_id\": {\n            \"description\": \"Unique identifier of bill vendor.\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          }\n        },\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

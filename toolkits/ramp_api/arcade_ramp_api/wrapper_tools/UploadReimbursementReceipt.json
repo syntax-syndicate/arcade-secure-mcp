@@ -1,0 +1,175 @@
+{
+  "name": "UploadReimbursementReceipt",
+  "fully_qualified_name": "RampApi.UploadReimbursementReceipt@0.1.0",
+  "description": "Uploads a receipt for reimbursement processing.\n\nUse this tool to upload a receipt for a reimbursement. If a `reimbursement_id` is provided, the receipt is linked to that reimbursement. Otherwise, a draft reimbursement is created via OCR.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "unique_idempotency_key",
+        "required": true,
+        "description": "Unique value to prevent duplicate uploads. Use a UUID to ensure uniqueness and avoid collisions.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique value to prevent duplicate uploads (use a UUID to avoid collisions)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "idempotency_key"
+      },
+      {
+        "name": "user_id_for_reimbursement",
+        "required": true,
+        "description": "UUID of the user for whom the reimbursement is to be created.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "UUID of the user to create the reimbursement for."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "reimbursee_id"
+      },
+      {
+        "name": "existing_reimbursement_id",
+        "required": false,
+        "description": "Optional UUID of an existing reimbursement to attach the receipt to. If not provided, a new draft will be created via OCR.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Optional UUID of existing reimbursement to attach receipt to. If not provided, a new draft reimbursement will be created via OCR."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "reimbursement_id"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_reimbursement_receipt_upload'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "reimbursements:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/reimbursements/submit-receipt",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "idempotency_key",
+        "tool_parameter_name": "unique_idempotency_key",
+        "description": "Unique value to prevent duplicate uploads (use a UUID to avoid collisions).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Unique value to prevent duplicate uploads (use a UUID to avoid collisions)."
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "reimbursee_id",
+        "tool_parameter_name": "user_id_for_reimbursement",
+        "description": "UUID of the user to create the reimbursement for.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "UUID of the user to create the reimbursement for."
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "reimbursement_id",
+        "tool_parameter_name": "existing_reimbursement_id",
+        "description": "Optional UUID of existing reimbursement to attach receipt to. If not provided, a new draft reimbursement will be created via OCR.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Optional UUID of existing reimbursement to attach receipt to. If not provided, a new draft reimbursement will be created via OCR."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"idempotency_key\": \"0a0ed428-0250-4993-96ad-94cd77bc86b6\",\n          \"reimbursee_id\": \"30ffb5d0-3021-4438-8253-25819d480237\",\n          \"reimbursement_id\": \"01b7dc97-5b67-45a2-8b05-e4e078f3a722\"\n        },\n        \"properties\": {\n          \"idempotency_key\": {\n            \"description\": \"Unique value to prevent duplicate uploads (use a UUID to avoid collisions).\",\n            \"type\": \"string\"\n          },\n          \"reimbursee_id\": {\n            \"description\": \"UUID of the user to create the reimbursement for.\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          },\n          \"reimbursement_id\": {\n            \"description\": \"Optional UUID of existing reimbursement to attach receipt to. If not provided, a new draft reimbursement will be created via OCR.\",\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"idempotency_key\",\n          \"reimbursee_id\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "name": "CreateSalesLead",
+  "fully_qualified_name": "RampApi.CreateSalesLead@0.1.0",
+  "description": "Create a new sales lead.\n\nThis tool creates a new sales lead in the system. It should be called when there's a need to register or track potential customer interest.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "sales_lead_data",
+        "required": true,
+        "description": "JSON object containing the sales lead information, including business info, contact details, source, and more. Required fields: business_info, email, first_name, last_name, phone, source. Optional fields: external_id, redirect_uri, state.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "business_info": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "email": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "external_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "first_name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "last_name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "phone": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "redirect_uri": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "source": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "AngelList",
+                "Quanta"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "state": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_sales_lead_creation'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "leads:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/leads",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "sales_lead_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "business_info": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "email": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "external_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "first_name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "last_name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "phone": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "redirect_uri": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "source": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "AngelList",
+                "Quanta"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "state": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"business_info\": {\n            \"business_description\": \"We are in the empire business\",\n            \"business_name_dba\": \"White & Pinkman Inc.\",\n            \"business_name_legal\": \"White & Pinkman Inc.\",\n            \"business_name_website\": \"www.whiteandpinkman.com\",\n            \"date_of_incorporation\": \"2004-01-01\",\n            \"ein_number\": \"12-3456789\",\n            \"entity_type\": \"CORPORATION\",\n            \"estimated_monthly_spend\": \"10,000\",\n            \"industry\": \"Food Products\",\n            \"industry_group\": \"Food, Beverage & Tobacco\",\n            \"office_address\": {\n              \"office_city\": \"Albuquerque\",\n              \"office_country\": \"US\",\n              \"office_postal_code\": \"100022\",\n              \"office_state\": \"New Mexico\",\n              \"office_street_address\": \"100 Main Street\"\n            },\n            \"sector\": \"Consumer Staples\",\n            \"state_of_incorporation\": \"New Mexico\"\n          },\n          \"email\": \"lead@whiteandpinkman.com\",\n          \"external_id\": \"f26bfdb5-beei-4875-a9b5-a29f8af6f381\",\n          \"first_name\": \"Walter\",\n          \"last_name\": \"White\",\n          \"redirect_uri\": \"https://app.whiteandpinkman.com/ramp/callback\",\n          \"source\": \"White & Pinkman\",\n          \"state\": \"f26bfdb5-7ecf-4875-a9b5-a29f8af6f381\"\n        },\n        \"properties\": {\n          \"business_info\": {\n            \"allOf\": [\n              {\n                \"example\": {\n                  \"business_description\": \"We are in the empire business\",\n                  \"business_name_dba\": \"White & Pinkman Inc.\",\n                  \"business_name_legal\": \"White & Pinkman Inc.\",\n                  \"business_name_website\": \"www.whiteandpinkman.com\",\n                  \"date_of_incorporation\": \"2004-01-01\",\n                  \"ein_number\": \"12-3456789\",\n                  \"entity_type\": \"CORPORATION\",\n                  \"estimated_monthly_spend\": \"10,000\",\n                  \"industry\": \"Food Products\",\n                  \"industry_group\": \"Food, Beverage & Tobacco\",\n                  \"office_address\": {\n                    \"office_city\": \"Albuquerque\",\n                    \"office_country\": \"US\",\n                    \"office_postal_code\": \"100022\",\n                    \"office_state\": \"New Mexico\",\n                    \"office_street_address\": \"100 Main Street\"\n                  },\n                  \"sector\": \"Consumer Staples\",\n                  \"state_of_incorporation\": \"New Mexico\"\n                },\n                \"properties\": {\n                  \"business_description\": {\n                    \"description\": \"A short description of the business.\",\n                    \"type\": \"string\"\n                  },\n                  \"business_name_dba\": {\n                    \"description\": \"Doing business as (DBA)\",\n                    \"maxLength\": 255,\n                    \"type\": \"string\"\n                  },\n                  \"business_name_legal\": {\n                    \"description\": \"Legal name of the business.\",\n                    \"maxLength\": 255,\n                    \"type\": \"string\"\n                  },\n                  \"business_name_website\": {\n                    \"description\": \"Business's website.\",\n                    \"type\": \"string\"\n                  },\n                  \"date_of_incorporation\": {\n                    \"description\": \"Business's incorporation date.\",\n                    \"format\": \"date\",\n                    \"type\": \"string\"\n                  },\n                  \"ein_number\": {\n                    \"description\": \"Employer Identification Number (EIN).\",\n                    \"type\": \"string\"\n                  },\n                  \"entity_type\": {\n                    \"description\": \"Type of incorporation.\",\n                    \"enum\": [\n                      \"COOPERATIVE\",\n                      \"CORPORATION\",\n                      \"LLC\",\n                      \"NON_PROFIT_CORPORATION\",\n                      \"OTHER\",\n                      \"PARTNERSHIP\",\n                      \"SOLE_PROPRIETORSHIP\"\n                    ],\n                    \"type\": \"string\"\n                  },\n                  \"estimated_monthly_spend\": {\n                    \"description\": \"Estimated monthly spend.\",\n                    \"type\": \"string\"\n                  },\n                  \"industry\": {\n                    \"description\": \"Business's industry\",\n                    \"type\": \"string\"\n                  },\n                  \"industry_group\": {\n                    \"description\": \"Business's industry group\",\n                    \"type\": \"string\"\n                  },\n                  \"office_address\": {\n                    \"allOf\": [\n                      {\n                        \"properties\": {\n                          \"office_apt_suite\": {\n                            \"type\": \"string\"\n                          },\n                          \"office_city\": {\n                            \"type\": \"string\"\n                          },\n                          \"office_country\": {\n                            \"type\": \"string\"\n                          },\n                          \"office_postal_code\": {\n                            \"type\": \"string\"\n                          },\n                          \"office_state\": {\n                            \"type\": \"string\"\n                          },\n                          \"office_street_address\": {\n                            \"type\": \"string\"\n                          }\n                        },\n                        \"type\": \"object\"\n                      }\n                    ],\n                    \"description\": \"Office's address.\"\n                  },\n                  \"office_phone_number\": {\n                    \"description\": \"Office phone number. Must include country code.\",\n                    \"type\": \"string\"\n                  },\n                  \"sector\": {\n                    \"description\": \"Business's sector\",\n                    \"type\": \"string\"\n                  },\n                  \"state_of_incorporation\": {\n                    \"description\": \"The state in which the business is incorporated.\",\n                    \"type\": \"string\"\n                  },\n                  \"sub_industry\": {\n                    \"description\": \"Business's subindustry\",\n                    \"type\": \"string\"\n                  }\n                },\n                \"required\": [\n                  \"business_name_dba\",\n                  \"business_name_legal\"\n                ],\n                \"type\": \"object\"\n              }\n            ],\n            \"description\": \"\"\n          },\n          \"email\": {\n            \"description\": \"\",\n            \"type\": \"string\"\n          },\n          \"external_id\": {\n            \"description\": \"\",\n            \"type\": \"string\"\n          },\n          \"first_name\": {\n            \"description\": \"\",\n            \"maxLength\": 40,\n            \"type\": \"string\"\n          },\n          \"last_name\": {\n            \"description\": \"\",\n            \"maxLength\": 40,\n            \"type\": \"string\"\n          },\n          \"phone\": {\n            \"description\": \"\",\n            \"type\": \"string\"\n          },\n          \"redirect_uri\": {\n            \"description\": \"\",\n            \"type\": \"string\"\n          },\n          \"source\": {\n            \"description\": \"\",\n            \"enum\": [\n              \"AngelList\",\n              \"Quanta\"\n            ],\n            \"type\": \"string\"\n          },\n          \"state\": {\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"email\",\n          \"external_id\",\n          \"first_name\",\n          \"last_name\",\n          \"redirect_uri\",\n          \"source\",\n          \"state\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

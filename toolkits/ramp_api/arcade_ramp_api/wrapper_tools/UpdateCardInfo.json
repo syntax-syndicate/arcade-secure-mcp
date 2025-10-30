@@ -1,0 +1,240 @@
+{
+  "name": "UpdateCardInfo",
+  "fully_qualified_name": "RampApi.UpdateCardInfo@0.1.0",
+  "description": "Update card owner, display name, and spend restrictions.\n\nUse this tool to update the owner, display name, or spending restrictions of a specified card. It provides confirmation of the changes made.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "card_identifier",
+        "required": true,
+        "description": "Unique identifier for the card to be updated. Use this to specify which card's details need modification.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "card_id"
+      },
+      {
+        "name": "card_update_payload",
+        "required": true,
+        "description": "JSON object containing card program ID, display name, entity ID, notification flag, new user ID, and spending restrictions.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "card_program_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Specify a card program to link with.\nThis will override the card's spending restrictions with those of the card program.\nPass `card_program_id = None` to detach the card's current card program.\n\nIf the `card_program_id` field is specified, then the card program's changes will override any other changes.\nFor example, if both `spending_restrictions` and `card_program_id` are passed, then the new spending restrictions\nwill match those of the card program (not the passed spending restrictions).\n"
+            },
+            "display_name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Cosmetic display name of the card."
+            },
+            "entity_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Specify id to update associated business entity."
+            },
+            "has_notifications_enabled": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Flag to set to enable or disable notifications."
+            },
+            "new_user_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Specify id for new card owner."
+            },
+            "spending_restrictions": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Modify spending restrictions. Only the fields to be modified need to be passed (so fields that will stay the same do not have to be passed)."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'patch_card_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "cards:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/cards/{card_id}",
+    "http_method": "PATCH",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "card_id",
+        "tool_parameter_name": "card_identifier",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "card_update_payload",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "card_program_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Specify a card program to link with.\nThis will override the card's spending restrictions with those of the card program.\nPass `card_program_id = None` to detach the card's current card program.\n\nIf the `card_program_id` field is specified, then the card program's changes will override any other changes.\nFor example, if both `spending_restrictions` and `card_program_id` are passed, then the new spending restrictions\nwill match those of the card program (not the passed spending restrictions).\n"
+            },
+            "display_name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Cosmetic display name of the card."
+            },
+            "entity_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Specify id to update associated business entity."
+            },
+            "has_notifications_enabled": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Flag to set to enable or disable notifications."
+            },
+            "new_user_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Specify id for new card owner."
+            },
+            "spending_restrictions": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Modify spending restrictions. Only the fields to be modified need to be passed (so fields that will stay the same do not have to be passed)."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"card_program_id\": \"ebe71e80-84d3-4e4b-be4d-70d05fb20934\",\n          \"display_name\": \"WFH Spending Card\",\n          \"entity_id\": \"a7cb9187-4dc8-412a-b5ca-0974d7f07a0b\",\n          \"has_notifications_enabled\": true,\n          \"new_user_id\": \"506a7096-98c0-4ab5-86ef-20c884a78e74\",\n          \"spending_restrictions\": {\n            \"amount\": 500,\n            \"interval\": \"DAILY\"\n          }\n        },\n        \"properties\": {\n          \"card_program_id\": {\n            \"description\": \"Specify a card program to link with.\\nThis will override the card's spending restrictions with those of the card program.\\nPass `card_program_id = None` to detach the card's current card program.\\n\\nIf the `card_program_id` field is specified, then the card program's changes will override any other changes.\\nFor example, if both `spending_restrictions` and `card_program_id` are passed, then the new spending restrictions\\nwill match those of the card program (not the passed spending restrictions).\\n\",\n            \"format\": \"uuid\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"display_name\": {\n            \"description\": \"Cosmetic display name of the card.\",\n            \"type\": \"string\"\n          },\n          \"entity_id\": {\n            \"description\": \"Specify id to update associated business entity.\",\n            \"format\": \"uuid\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"has_notifications_enabled\": {\n            \"description\": \"Flag to set to enable or disable notifications.\",\n            \"type\": \"boolean\"\n          },\n          \"new_user_id\": {\n            \"description\": \"Specify id for new card owner.\",\n            \"format\": \"uuid\",\n            \"nullable\": true,\n            \"type\": \"string\"\n          },\n          \"spending_restrictions\": {\n            \"allOf\": [\n              {\n                \"properties\": {\n                  \"amount\": {\n                    \"description\": \"Amount limit total per interval.\",\n                    \"minimum\": 0,\n                    \"oneOf\": [\n                      {\n                        \"format\": \"decimal\",\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"type\": \"number\"\n                      }\n                    ]\n                  },\n                  \"blocked_mcc_codes\": {\n                    \"items\": {\n                      \"type\": \"string\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"categories\": {\n                    \"description\": \"List of [Ramp Category Codes](/developer-api/v1/overview/conventions#ramp-category-codes) this card is restricted to.\",\n                    \"items\": {\n                      \"type\": \"integer\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"categories_blacklist\": {\n                    \"items\": {\n                      \"type\": \"integer\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"categories_whitelist\": {\n                    \"items\": {\n                      \"type\": \"integer\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"currency\": {\n                    \"description\": \"Currency in which the amount is specified.\",\n                    \"type\": \"string\"\n                  },\n                  \"interval\": {\n                    \"description\": \"Time interval to apply limit to.\",\n                    \"enum\": [\n                      \"ANNUAL\",\n                      \"DAILY\",\n                      \"MONTHLY\",\n                      \"QUARTERLY\",\n                      \"TERTIARY\",\n                      \"TOTAL\",\n                      \"WEEKLY\",\n                      \"YEARLY\"\n                    ],\n                    \"type\": \"string\"\n                  },\n                  \"lock_date\": {\n                    \"description\": \"Date to automatically lock the card. If `lock_date` has passed, set to a future date or to null to unlock the card.\",\n                    \"format\": \"date-time\",\n                    \"nullable\": true,\n                    \"type\": \"string\"\n                  },\n                  \"policy_id\": {\n                    \"type\": \"string\"\n                  },\n                  \"transaction_amount_limit\": {\n                    \"description\": \"Max amount limit per transaction.\",\n                    \"minimum\": 0,\n                    \"oneOf\": [\n                      {\n                        \"format\": \"decimal\",\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"type\": \"number\"\n                      }\n                    ]\n                  },\n                  \"vendor_blacklist\": {\n                    \"items\": {\n                      \"format\": \"uuid\",\n                      \"type\": \"string\"\n                    },\n                    \"type\": \"array\"\n                  },\n                  \"vendor_whitelist\": {\n                    \"items\": {\n                      \"format\": \"uuid\",\n                      \"type\": \"string\"\n                    },\n                    \"type\": \"array\"\n                  }\n                },\n                \"type\": \"object\",\n                \"x-resource-name\": \"card_spending_restrictions_update\"\n              }\n            ],\n            \"description\": \"Modify spending restrictions. Only the fields to be modified need to be passed (so fields that will stay the same do not have to be passed).\"\n          }\n        },\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

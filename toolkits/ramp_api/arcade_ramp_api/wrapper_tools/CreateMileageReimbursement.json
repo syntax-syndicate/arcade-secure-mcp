@@ -1,0 +1,245 @@
+{
+  "name": "CreateMileageReimbursement",
+  "fully_qualified_name": "RampApi.CreateMileageReimbursement@0.1.0",
+  "description": "Create a mileage reimbursement entry.\n\nUse this tool to create a mileage reimbursement entry when mileage needs to be compensated. This is useful for generating records for reimbursements based on travel mileage.",
+  "toolkit": {
+    "name": "RampApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "mileage_reimbursement_details",
+        "required": true,
+        "description": "JSON object containing mileage reimbursement details such as distance, distance units (KILOMETERS or MILES), start and end locations, waypoints as an array of strings, trip date, reimbursee ID, and memo.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "distance": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "distance_units": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "KILOMETERS",
+                "MILES"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "end_location": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "memo": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "reimbursee_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "start_location": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "trip_date": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "waypoints": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post_mileage_reimbursement_resource'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-ramp",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "reimbursements:write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the ramp API."
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ramp.com/developer/v1/reimbursements/mileage",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "mileage_reimbursement_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "distance": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "distance_units": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "KILOMETERS",
+                "MILES"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "end_location": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "memo": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "reimbursee_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "start_location": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "trip_date": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "waypoints": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"example\": {\n          \"distance\": 125.5,\n          \"distance_units\": \"MILES\",\n          \"end_location\": \"456 Business Ave, Philadelphia, PA 19103\",\n          \"memo\": \"Client meeting in downtown office\",\n          \"reimbursee_id\": \"7979392e-8d41-4f97-815b-ccd7584802bf\",\n          \"start_location\": \"123 Main St, Scranton, PA 18503\",\n          \"trip_date\": \"2023-08-19\",\n          \"waypoints\": [\n            \"321 Rest Area Dr, King of Prussia, PA 19406\",\n            \"789 Highway Stop, Allentown, PA 18101\"\n          ]\n        },\n        \"properties\": {\n          \"distance\": {\n            \"oneOf\": [\n              {\n                \"format\": \"decimal\",\n                \"type\": \"string\"\n              },\n              {\n                \"type\": \"number\"\n              }\n            ]\n          },\n          \"distance_units\": {\n            \"enum\": [\n              \"KILOMETERS\",\n              \"MILES\"\n            ],\n            \"type\": \"string\"\n          },\n          \"end_location\": {\n            \"type\": \"string\"\n          },\n          \"memo\": {\n            \"type\": \"string\"\n          },\n          \"reimbursee_id\": {\n            \"format\": \"uuid\",\n            \"type\": \"string\"\n          },\n          \"start_location\": {\n            \"type\": \"string\"\n          },\n          \"trip_date\": {\n            \"format\": \"date\",\n            \"type\": \"string\"\n          },\n          \"waypoints\": {\n            \"items\": {\n              \"type\": \"string\"\n            },\n            \"type\": \"array\"\n          }\n        },\n        \"required\": [\n          \"distance\",\n          \"reimbursee_id\",\n          \"trip_date\"\n        ],\n        \"type\": \"object\"\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}
