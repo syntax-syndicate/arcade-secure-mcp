@@ -100,17 +100,40 @@ class BaseHTTPErrorMapper:
         """
         Determine if a 403 error is actually a rate limiting error.
 
-        Simply checks if any rate limiting headers are present.
+        Checks for both:
+        1. retry-after header (definitive signal to retry)
+        2. rate limit keywords in error message as a fallback
+
+        Many APIs include x-ratelimit-* headers on all responses for
+        informational purposes, so we don't treat those as rate limit indicators.
 
         Args:
             headers: HTTP response headers
-            msg: Error message (unused, kept for compatibility)
+            msg: Error message from the response
 
         Returns:
             True if this 403 should be treated as rate limiting
         """
-        # Check if any rate limiting headers are present
-        return any(header.lower() in [h.lower() for h in headers] for header in RATE_HEADERS)
+        headers_lower = {k.lower(): v for k, v in headers.items()}
+        
+        # Primary check: retry-after header is the definitive signal
+        if "retry-after" in headers_lower:
+            return True
+        
+        # Fallback: Check message for rate limit keywords
+        # Only do this if there's no retry-after to avoid false positives
+        msg_lower = msg.lower()
+        rate_limit_keywords = (
+            "rate limit",
+            "rate_limit",
+            "ratelimit",
+            "too many requests",
+            "quota exceeded",
+            "throttle",
+            "throttled",
+        )
+        
+        return any(keyword in msg_lower for keyword in rate_limit_keywords)
 
 
 class _HTTPXExceptionHandler:
